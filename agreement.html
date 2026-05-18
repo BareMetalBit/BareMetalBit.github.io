@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greystack — Service Agreement & Terms</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f5f4f0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    color: #1a1a1a;
+    padding: 40px 20px;
+  }
+
+  .document {
+    max-width: 760px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 60px 64px;
+  }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+  }
+
+  .doc-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+
+  .doc-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .doc-subtitle {
+    font-size: 13px;
+    color: #666;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    border-left: 3px solid #1a1a1a;
+    padding-left: 10px;
+    margin-bottom: 14px;
+  }
+
+  p {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    margin: 10px 0 10px 20px;
+  }
+
+  ul li {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 6px;
+  }
+
+  /* Signature block */
+  .signature-block {
+    margin-top: 48px;
+    border-top: 1px solid #ddd;
+    padding-top: 32px;
+  }
+
+  .sig-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 28px;
+  }
+
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .sig-group { }
+
+  .sig-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 32px;
+  }
+
+  .sig-line {
+    border-bottom: 1px solid #1a1a1a;
+    height: 1px;
+    margin-bottom: 6px;
+  }
+
+  .sig-line-label {
+    font-size: 11px;
+    color: #999;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .sig-fields {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .sig-field { }
+
+  .sig-field-line {
+    border-bottom: 1px solid #ccc;
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .sig-field-label {
+    font-size: 10px;
+    color: #bbb;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* Footer */
+  .doc-footer {
+    margin-top: 48px;
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doc-footer-left {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.08em;
+  }
+
+  .doc-footer-right {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.08em;
+  }
+
+  /* Print styles */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .document { border: none; padding: 40px; max-width: 100%; }
+    .no-print { display: none; }
+  }
+
+  /* Print button */
+  .print-bar {
+    max-width: 760px;
+    margin: 0 auto 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .print-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .print-btn:hover { opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="document">
+
+  <div class="doc-header">
+    <div class="doc-brand">Greystack // IT Support Services</div>
+    <div class="doc-title">Service Agreement &amp; Terms of Service</div>
+    <div class="doc-subtitle">greystacktech@gmail.com &nbsp;·&nbsp; Serving the Charleston, SC Area</div>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <div class="section-title">1. Agreement &amp; Scope of Services</div>
+    <p>This Service Agreement ("Agreement") is entered into between Greystack IT Support ("Provider") and the client identified in the signature block below ("Client"). By engaging Greystack IT Support for any service, the Client agrees to be bound by the terms and conditions set forth in this Agreement.</p>
+    <p>Services provided may include but are not limited to: computer diagnostics and repair, virus and malware removal, operating system installation and configuration, hardware upgrades, network setup and troubleshooting, data backup and transfer, peripheral setup, and technology education and guidance.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <div class="section-title">2. Rates &amp; Payment</div>
+    <p>Services are billed at the agreed upon rate of <strong>$75.00 per hour</strong> for on-site visits. Initial consultations are provided at no charge. Partial hours are billed in 30-minute increments. A minimum charge of one (1) hour applies to all on-site visits.</p>
+    <p>Payment is due upon completion of services unless otherwise agreed in writing. Accepted payment methods include cash, electronic transfer, and major credit/debit cards. Greystack IT Support reserves the right to require payment in advance for services estimated to exceed two (2) hours.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <div class="section-title">3. Data Loss Disclaimer</div>
+    <p><strong>THE CLIENT ACKNOWLEDGES AND AGREES THAT DATA LOSS IS AN INHERENT RISK OF COMPUTER REPAIR AND TECHNICAL SERVICES.</strong> Greystack IT Support strongly recommends that the Client back up all important data prior to any service being performed.</p>
+    <p>Greystack IT Support shall not be held liable for any loss, corruption, or destruction of data, files, software, or any other information stored on any device, regardless of the cause, including but not limited to:</p>
+    <ul>
+      <li>Data lost during virus or malware removal procedures</li>
+      <li>Data lost during operating system reinstallation or repair</li>
+      <li>Data lost due to pre-existing hardware failure or corruption</li>
+      <li>Data lost due to unforeseen hardware or software complications</li>
+      <li>Data lost during backup, transfer, or migration procedures</li>
+    </ul>
+    <p>Where data recovery is attempted, Greystack IT Support makes no guarantee of successful recovery. If data recovery services are requested, additional time and fees may apply and will be communicated to the Client before proceeding.</p>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section">
+    <div class="section-title">4. Equipment &amp; Hardware Disclaimer</div>
+    <p>Greystack IT Support will exercise reasonable care when handling all Client equipment. However, the Client acknowledges and agrees that:</p>
+    <ul>
+      <li>Pre-existing hardware conditions, including but not limited to failing hard drives, damaged components, or aging equipment, may worsen or fail during or after service</li>
+      <li>Greystack IT Support shall not be held liable for hardware failure that occurs as a result of pre-existing conditions discovered during service</li>
+      <li>Any hardware components purchased and installed by Greystack IT Support are subject to the manufacturer's warranty only. Greystack IT Support does not provide warranties on third-party hardware</li>
+      <li>The Client is responsible for the cost of any replacement parts required to complete the requested service</li>
+    </ul>
+    <p>In the event that a device cannot be repaired or additional damage is discovered during service, Greystack IT Support will notify the Client immediately before proceeding further.</p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section">
+    <div class="section-title">5. Client Responsibilities</div>
+    <p>The Client agrees to:</p>
+    <ul>
+      <li>Provide accurate information regarding the device and the nature of the issue</li>
+      <li>Back up all important data prior to service, or acknowledge the risk of data loss if backup is not performed</li>
+      <li>Ensure that all software and operating systems on the device are properly licensed</li>
+      <li>Notify Greystack IT Support of any known pre-existing hardware or software issues</li>
+      <li>Be present or available during on-site service visits, or designate an authorized representative aged 18 or older</li>
+    </ul>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section">
+    <div class="section-title">6. No Guarantee of Results</div>
+    <p>Greystack IT Support will make every reasonable effort to resolve the Client's technical issues. However, no guarantee is made that any particular issue will be fully resolved. In cases where a complete resolution is not possible, the Client will be informed of the situation and any options available, and will only be charged for time and effort expended.</p>
+    <p>In the event that a virus, malware, or other infection cannot be fully removed through standard tools and procedures, Greystack IT Support may recommend an operating system reinstallation as the most reliable solution. This recommendation will be communicated to the Client before proceeding.</p>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section">
+    <div class="section-title">7. Limitation of Liability</div>
+    <p>To the fullest extent permitted by applicable law, Greystack IT Support's total liability to the Client for any claim arising from services rendered shall not exceed the total amount paid by the Client for the specific service giving rise to the claim.</p>
+    <p>In no event shall Greystack IT Support be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of revenue, loss of business, or loss of profits, even if advised of the possibility of such damages.</p>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="section">
+    <div class="section-title">8. Privacy &amp; Confidentiality</div>
+    <p>Greystack IT Support may have access to personal files, photographs, documents, and other private information during the course of service. The Provider agrees to:</p>
+    <ul>
+      <li>Access only files and data necessary to perform the requested service</li>
+      <li>Maintain strict confidentiality of all Client data encountered during service</li>
+      <li>Not copy, share, transmit, or disclose any Client data to any third party</li>
+    </ul>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="section">
+    <div class="section-title">9. Cancellation &amp; Rescheduling</div>
+    <p>The Client may cancel or reschedule a scheduled on-site visit with at least 24 hours notice at no charge. Cancellations made with less than 24 hours notice may be subject to a one-hour minimum service charge to cover travel and scheduling costs.</p>
+  </div>
+
+  <!-- Section 10 -->
+  <div class="section">
+    <div class="section-title">10. Governing Law</div>
+    <p>This Agreement shall be governed by and construed in accordance with the laws of the State of South Carolina. Any disputes arising from this Agreement shall be subject to the exclusive jurisdiction of the courts located in Charleston County, South Carolina.</p>
+  </div>
+
+  <!-- Section 11 -->
+  <div class="section">
+    <div class="section-title">11. Acknowledgement</div>
+    <p>By signing below, the Client acknowledges that they have read, understood, and agree to all terms and conditions set forth in this Service Agreement. The Client further acknowledges that they have been advised to back up all data prior to service and accept full responsibility for any data that has not been backed up.</p>
+  </div>
+
+  <!-- Signature Block -->
+  <div class="signature-block">
+    <div class="sig-title">Signatures</div>
+    <div class="sig-grid">
+
+      <div class="sig-group">
+        <div class="sig-label">Client</div>
+        <div class="sig-line"></div>
+        <div class="sig-line-label">Signature</div>
+        <div class="sig-fields">
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Printed Name</div>
+          </div>
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Date</div>
+          </div>
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Phone Number</div>
+          </div>
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Email Address</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-group">
+        <div class="sig-label">Greystack IT Support</div>
+        <div class="sig-line"></div>
+        <div class="sig-line-label">Authorized Signature</div>
+        <div class="sig-fields">
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Printed Name</div>
+          </div>
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Date</div>
+          </div>
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Service Description</div>
+          </div>
+          <div class="sig-field">
+            <div class="sig-field-line"></div>
+            <div class="sig-field-label">Estimated Duration / Cost</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <div class="doc-footer-left">GREYSTACK IT SUPPORT // greystacktech@gmail.com</div>
+    <div class="doc-footer-right">Serving the Charleston, SC Area // Est. 2025</div>
+  </div>
+
+</div>
+
+</body>
+</html>
