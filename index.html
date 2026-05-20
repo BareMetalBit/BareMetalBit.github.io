@@ -125,9 +125,8 @@
     gap: 12px;
   }
 
-  .chrome-row1 .cmd-left {
-    display: block;
-  }
+  .chrome-row1 .cmd-left { display: block; }
+  .chrome-row1 .cmd-mobile { display: none; }
 
   .chrome-row1 span { color: var(--green); }
 
@@ -864,6 +863,8 @@
       padding: 5px 14px;
       justify-content: space-between;
     }
+    .chrome-row1 .cmd-desktop { display: none; }
+    .chrome-row1 .cmd-mobile { display: block; }
 
     .chrome-row2 { padding: 10px 14px; }
 
@@ -927,7 +928,8 @@
 <!-- Top Chrome -->
 <div class="chrome-top">
   <div class="chrome-row1">
-    <span class="cmd-left">root@bmb:~$ ./services --list</span>
+    <span class="cmd-left cmd-desktop">root@baremetalbit:~$ ./services --list</span>
+    <span class="cmd-left cmd-mobile">root@bmb:~$ ./services --list</span>
     <span>SYS:<span style="color:var(--green)">ONLINE</span> &nbsp;|&nbsp; LOC:CHS-SC &nbsp;|&nbsp; EST.2025</span>
   </div>
   <div class="chrome-row2">
