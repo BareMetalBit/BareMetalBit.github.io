@@ -43,9 +43,6 @@
     cursor: default;
   }
 
-  /* CRT scanline overlay removed for readability */
-
-  /* Vignette */
   body::after {
     content: '';
     position: fixed;
@@ -55,7 +52,6 @@
     z-index: 999;
   }
 
-  /* Grid background */
   .grid-bg {
     position: fixed;
     inset: 0;
@@ -67,7 +63,6 @@
     z-index: 0;
   }
 
-  /* Boot screen */
   .boot-screen {
     position: fixed;
     inset: 0;
@@ -97,7 +92,6 @@
   .boot-line:nth-child(7) { animation: bootLine 0.1s 1.9s forwards; color: var(--cyan); }
   .boot-line:nth-child(8) { animation: bootLine 0.1s 2.2s forwards; color: var(--yellow); }
 
-  /* Top chrome */
   .chrome-top {
     background: var(--surface);
     border-bottom: 1px solid var(--border-bright);
@@ -117,15 +111,22 @@
   }
 
   .chrome-row1 {
-    padding: 6px 28px;
+    padding: 5px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border);
     font-size: 9px;
     color: var(--muted);
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    gap: 12px;
+  }
+
+  .chrome-row1 .cmd-left {
+    display: block;
   }
 
   .chrome-row1 span { color: var(--green); }
@@ -143,7 +144,6 @@
     gap: 14px;
   }
 
-  /* Nav dropdown */
   .nav-dropdown {
     position: relative;
   }
@@ -245,6 +245,7 @@
     text-transform: uppercase;
     text-shadow: 0 0 6px var(--green);
     animation: statusPulse 2s infinite;
+    white-space: nowrap;
   }
 
   .chrome-email {
@@ -265,7 +266,7 @@
   .page {
     max-width: 820px;
     margin: 0 auto;
-    padding: 40px 28px 80px;
+    padding: 32px 28px 80px;
     position: relative;
     z-index: 1;
     animation: fadeIn 0.3s 3.1s ease both;
@@ -273,7 +274,7 @@
 
   /* Header */
   .header {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     border: 1px solid var(--border-bright);
     padding: 28px;
     position: relative;
@@ -443,7 +444,7 @@
     font-weight: 400;
     color: var(--muted);
     line-height: 1.65;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
     position: relative;
     z-index: 1001;
   }
@@ -487,19 +488,27 @@
     align-items: center;
     justify-content: space-between;
     border-left: 1px solid var(--border-bright);
+    min-width: 0;
   }
 
   .section-name {
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--cyan);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
   }
 
   .section-count {
     font-size: 9px;
     color: var(--dim);
     letter-spacing: 0.1em;
+    flex-shrink: 0;
+    margin-left: 8px;
   }
 
   .service-grid { display: grid; gap: 1px; }
@@ -610,8 +619,6 @@
     background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan));
     opacity: 0.3;
   }
-
-  .footer-left {}
 
   .footer-label {
     font-size: 9px;
@@ -803,11 +810,6 @@
     to { opacity: 1; }
   }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   @keyframes bootLine {
     to { opacity: 1; }
   }
@@ -819,17 +821,6 @@
   @keyframes statusPulse {
     0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--green); }
     50% { opacity: 0.5; box-shadow: none; }
-  }
-
-  @media (max-width: 540px) {
-    .chrome-row1 { padding: 6px 16px; font-size: 8px; }
-    .chrome-row2 { padding: 10px 16px; }
-    .brand-name { font-size: 13px; }
-    .chrome-email { display: none; }
-    .page { padding: 28px 14px 60px; }
-    .pricing { grid-template-columns: 1fr; }
-    .footer { flex-direction: column; align-items: flex-start; }
-    .footer-right { text-align: left; }
   }
 
   /* Floating book button */
@@ -863,16 +854,56 @@
     transform: translateY(0);
   }
 
-  .float-book:hover {
-    box-shadow: 0 0 24px rgba(0,229,255,0.5);
-  }
+  .float-book:hover { box-shadow: 0 0 24px rgba(0,229,255,0.5); }
 
-  .float-book-arrow {
-    font-size: 14px;
-    line-height: 1;
-  }
+  .float-book-arrow { font-size: 14px; line-height: 1; }
 
-  @media (max-width: 540px) {
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .chrome-row1 {
+      padding: 5px 14px;
+      justify-content: space-between;
+    }
+
+    .chrome-row2 { padding: 10px 14px; }
+
+    .brand-name { font-size: 13px; }
+
+    /* Hide email in header chrome — saves space */
+    .chrome-email { display: none; }
+
+    /* Tighten status pill text */
+    .status-pill { font-size: 8px; padding: 3px 8px; letter-spacing: 0.1em; }
+
+    /* Page padding */
+    .page { padding: 20px 14px 72px; }
+
+    /* Header tighter */
+    .header { padding: 20px 16px; margin-bottom: 16px; }
+    .header-path { font-size: 9px; word-break: break-all; }
+
+    /* Pricing: side-by-side on mobile too (they're short enough) */
+    .pricing { grid-template-columns: 1fr 1fr; gap: 4px; }
+    .rate-amount { font-size: 24px; }
+    .rate-card { padding: 16px 14px; }
+
+    /* Remote note tighter */
+    .remote-note { margin-bottom: 20px; font-size: 12px; }
+
+    /* Section header — prevent "Education & Guidance" from overflowing */
+    .section-title-wrap { padding: 9px 10px; }
+    .section-name { font-size: 9px; letter-spacing: 0.08em; }
+    .section-count { display: none; }
+
+    /* Service rows tighter */
+    .service-row { padding: 11px 14px 11px 12px; }
+    .service-name { font-size: 13px; }
+    .service-desc { font-size: 12px; }
+
+    /* Footer stacks naturally */
+    .footer { flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+
     .float-book { bottom: 16px; right: 16px; padding: 10px 14px; font-size: 9px; }
   }
 </style>
@@ -896,7 +927,7 @@
 <!-- Top Chrome -->
 <div class="chrome-top">
   <div class="chrome-row1">
-    <span>root@baremetalbit:~$ ./services --list</span>
+    <span class="cmd-left">root@bmb:~$ ./services --list</span>
     <span>SYS:<span style="color:var(--green)">ONLINE</span> &nbsp;|&nbsp; LOC:CHS-SC &nbsp;|&nbsp; EST.2025</span>
   </div>
   <div class="chrome-row2">
@@ -1126,9 +1157,7 @@
   <div class="modal">
     <div class="modal-titlebar">
       <span class="modal-titlebar-label">// schedule_session.sh</span>
-      <div class="modal-titlebar-dots">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="modal-titlebar-dots"><span></span><span></span><span></span></div>
     </div>
     <div class="modal-body">
       <div class="modal-cmd">$ ./schedule <span>--type=onsite --rate=75/hr</span></div>
@@ -1145,9 +1174,7 @@
   <div class="modal">
     <div class="modal-titlebar">
       <span class="modal-titlebar-label">// book_consult.sh</span>
-      <div class="modal-titlebar-dots">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="modal-titlebar-dots"><span></span><span></span><span></span></div>
     </div>
     <div class="modal-body">
       <div class="modal-cmd">$ ./schedule <span>--type=consult --rate=free</span></div>
@@ -1188,11 +1215,7 @@
 
   const floatBtn = document.getElementById('float-book');
   window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) {
-      floatBtn.classList.add('visible');
-    } else {
-      floatBtn.classList.remove('visible');
-    }
+    floatBtn.classList.toggle('visible', window.scrollY > 300);
   });
 
   function openModal(type) {
@@ -1206,16 +1229,11 @@
   }
 
   function closeOnOverlay(event, type) {
-    if (event.target === document.getElementById('modal-' + type)) {
-      closeModal(type);
-    }
+    if (event.target === document.getElementById('modal-' + type)) closeModal(type);
   }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeModal('onsite');
-      closeModal('consult');
-    }
+    if (e.key === 'Escape') { closeModal('onsite'); closeModal('consult'); }
   });
 </script>
 </body>
