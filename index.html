@@ -16,12 +16,9 @@
     --border-bright: #3a6080;
     --cyan: #00e5ff;
     --cyan-dim: rgba(0,229,255,0.12);
-    --cyan-mid: rgba(0,229,255,0.22);
     --magenta: #ff4da6;
-    --magenta-dim: rgba(255,77,166,0.12);
     --yellow: #ffe066;
     --green: #39ff85;
-    --green-dim: rgba(57,255,133,0.12);
     --text: #dff4fb;
     --muted: #93c9db;
     --dim: #5a8fa3;
@@ -37,8 +34,6 @@
     color: var(--text);
     font-family: var(--mono);
     min-height: 100vh;
-    padding: 0;
-    position: relative;
     overflow-x: hidden;
     cursor: default;
   }
@@ -63,26 +58,16 @@
     z-index: 0;
   }
 
+  /* ── BOOT ── */
   .boot-screen {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: #0d1f2d;
     z-index: 9000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; flex-direction: column; justify-content: center;
     padding: 48px;
     animation: bootFade 0.4s 2.8s ease forwards;
   }
-
-  .boot-line {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--green);
-    line-height: 1.8;
-    opacity: 0;
-  }
-
+  .boot-line { font-family: var(--mono); font-size: 12px; color: var(--green); line-height: 1.8; opacity: 0; }
   .boot-line:nth-child(1) { animation: bootLine 0.1s 0.1s forwards; }
   .boot-line:nth-child(2) { animation: bootLine 0.1s 0.4s forwards; }
   .boot-line:nth-child(3) { animation: bootLine 0.1s 0.7s forwards; }
@@ -92,290 +77,128 @@
   .boot-line:nth-child(7) { animation: bootLine 0.1s 1.9s forwards; color: var(--cyan); }
   .boot-line:nth-child(8) { animation: bootLine 0.1s 2.2s forwards; color: var(--yellow); }
 
+  /* ── CHROME ── */
   .chrome-top {
     background: var(--surface);
     border-bottom: 1px solid var(--border-bright);
-    position: relative;
-    z-index: 10;
+    position: relative; z-index: 10;
     animation: fadeIn 0.3s 3s ease both;
   }
-
   .chrome-top::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0; right: 0;
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--cyan), transparent);
     opacity: 0.4;
   }
-
   .chrome-row1 {
     padding: 5px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     border-bottom: 1px solid var(--border);
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    gap: 12px;
+    font-size: 9px; color: var(--muted); letter-spacing: 0.12em;
+    text-transform: uppercase; white-space: nowrap; overflow: hidden; gap: 12px;
   }
-
-  .chrome-row1 .cmd-left { display: block; }
   .chrome-row1 .cmd-mobile { display: none; }
-
   .chrome-row1 span { color: var(--green); }
+  .chrome-row2 { padding: 10px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .chrome-brand { display: flex; align-items: center; gap: 14px; }
 
-  .chrome-row2 {
-    padding: 10px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .chrome-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .nav-dropdown {
-    position: relative;
-  }
-
+  .nav-dropdown { position: relative; }
   .brand-icon {
-    width: 28px;
-    height: 28px;
-    border: 1px solid var(--cyan);
-    display: grid;
-    place-items: center;
-    position: relative;
-    cursor: pointer;
-    background: transparent;
+    width: 28px; height: 28px; border: 1px solid var(--cyan);
+    display: grid; place-items: center; cursor: pointer; background: transparent;
     transition: background 0.2s, box-shadow 0.2s;
   }
-
-  .brand-icon:hover, .brand-icon.open {
-    background: rgba(0,229,255,0.12);
-    box-shadow: 0 0 10px rgba(0,229,255,0.3);
-  }
-
+  .brand-icon:hover, .brand-icon.open { background: rgba(0,229,255,0.12); box-shadow: 0 0 10px rgba(0,229,255,0.3); }
   .nav-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    background: #0d1f2d;
-    border: 1px solid var(--border-bright);
-    min-width: 220px;
-    z-index: 2000;
-    overflow: hidden;
+    display: none; position: absolute; top: calc(100% + 8px); left: 0;
+    background: #0d1f2d; border: 1px solid var(--border-bright);
+    min-width: 220px; z-index: 2000;
   }
-
   .nav-menu.open { display: block; }
-
-  .nav-menu-label {
-    font-family: var(--mono);
-    font-size: 8px;
-    color: var(--dim);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 8px 14px 6px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s, color 0.15s;
-    text-decoration: none;
-  }
-
+  .nav-menu-label { font-family: var(--mono); font-size: 8px; color: var(--dim); letter-spacing: 0.2em; text-transform: uppercase; padding: 8px 14px 6px; border-bottom: 1px solid var(--border); }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s, color 0.15s; text-decoration: none; }
   .nav-item:last-child { border-bottom: none; }
   .nav-item:hover { background: rgba(0,229,255,0.08); color: var(--cyan); }
+  .nav-item-index { font-size: 9px; color: var(--cyan); opacity: 0.7; flex-shrink: 0; }
 
-  .nav-item-index {
-    font-size: 9px;
-    color: var(--cyan);
-    opacity: 0.7;
-    flex-shrink: 0;
-  }
-
-  .brand-name {
-    font-family: var(--display);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: 0.12em;
-    text-shadow: 0 0 20px rgba(0,245,255,0.5);
-  }
-
-  .brand-ver {
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-top: 2px;
-  }
-
-  .chrome-status {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .status-pill {
-    border: 1px solid var(--green);
-    padding: 3px 10px;
-    font-size: 9px;
-    color: var(--green);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-shadow: 0 0 6px var(--green);
-    animation: statusPulse 2s infinite;
-    white-space: nowrap;
-  }
-
-  .chrome-email {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  .chrome-email a {
-    color: var(--cyan);
-    text-decoration: none;
-    transition: text-shadow 0.2s;
-  }
-
+  .brand-name { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--cyan); letter-spacing: 0.12em; text-shadow: 0 0 20px rgba(0,245,255,0.5); }
+  .brand-ver { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; margin-top: 2px; }
+  .chrome-status { display: flex; align-items: center; gap: 16px; }
+  .status-pill { border: 1px solid var(--green); padding: 3px 10px; font-size: 9px; color: var(--green); letter-spacing: 0.15em; text-transform: uppercase; text-shadow: 0 0 6px var(--green); animation: statusPulse 2s infinite; white-space: nowrap; }
+  .chrome-email { font-size: 10px; color: var(--muted); }
+  .chrome-email a { color: var(--cyan); text-decoration: none; transition: text-shadow 0.2s; }
   .chrome-email a:hover { text-shadow: 0 0 8px var(--cyan); }
 
-  /* Page */
-  .page {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 32px 28px 80px;
-    position: relative;
-    z-index: 1;
-    animation: fadeIn 0.3s 3.1s ease both;
-  }
+  /* ── PAGE ── */
+  .page { max-width: 820px; margin: 0 auto; padding: 32px 28px 80px; position: relative; z-index: 1; animation: fadeIn 0.3s 3.1s ease both; }
 
-  /* Header */
-  .header {
-    margin-bottom: 20px;
-    border: 1px solid var(--border-bright);
-    padding: 28px;
-    position: relative;
-    background: var(--surface);
-  }
-
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 20px; right: 20px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), var(--cyan), transparent);
-  }
-
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: 20px; right: 20px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    opacity: 0.4;
-  }
-
-  .header-path {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 20px;
-  }
-
+  /* ── HEADER ── */
+  .header { margin-bottom: 20px; border: 1px solid var(--border-bright); padding: 28px; position: relative; background: var(--surface); }
+  .header::before { content: ''; position: absolute; top: -1px; left: 20px; right: 20px; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), var(--cyan), transparent); }
+  .header::after { content: ''; position: absolute; bottom: -1px; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0.4; }
+  .header-path { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 20px; }
   .header-path span { color: var(--cyan); }
-
-  .header h1 {
-    font-family: var(--display);
-    font-size: clamp(22px, 5vw, 40px);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-    color: var(--text);
-    text-transform: uppercase;
-  }
-
-  .header h1 .highlight {
-    color: var(--cyan);
-    text-shadow: 0 0 20px rgba(0,245,255,0.4);
-  }
-
-  .header h1 .magenta {
-    color: var(--magenta);
-    text-shadow: 0 0 20px rgba(255,0,110,0.4);
-  }
-
-  .header-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 520px;
-    margin-bottom: 16px;
-    border-left: 2px solid var(--border-bright);
-    padding-left: 14px;
-  }
-
-  .header-contact {
-    font-size: 13px;
-    border-left: 2px solid var(--border-bright);
-    padding-left: 14px;
-  }
-
+  .header h1 { font-family: var(--display); font-size: clamp(22px, 5vw, 40px); font-weight: 900; line-height: 1.1; letter-spacing: 0.05em; margin-bottom: 16px; color: var(--text); text-transform: uppercase; }
+  .header h1 .highlight { color: var(--cyan); text-shadow: 0 0 20px rgba(0,245,255,0.4); }
+  .header h1 .magenta { color: var(--magenta); text-shadow: 0 0 20px rgba(255,0,110,0.4); }
+  .header-desc { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 520px; margin-bottom: 16px; border-left: 2px solid var(--border-bright); padding-left: 14px; }
+  .header-contact { font-size: 13px; border-left: 2px solid var(--border-bright); padding-left: 14px; }
   .header-contact .label { color: var(--muted); }
-
-  .header-contact a {
-    color: var(--cyan);
-    text-decoration: none;
-    font-weight: 700;
-    transition: text-shadow 0.2s;
-  }
-
+  .header-contact a { color: var(--cyan); text-decoration: none; font-weight: 700; transition: text-shadow 0.2s; }
   .header-contact a:hover { text-shadow: 0 0 10px var(--cyan); }
 
-  /* Pricing */
-  .pricing {
+  /* ── PRICING ── */
+  .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+  .rate-card { background: var(--surface); border: 1px solid var(--border-bright); padding: 20px 22px; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.2s; }
+  .rate-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+  .rate-card:hover { border-color: var(--cyan); }
+  .rate-card:hover::before { transform: scaleX(1); }
+  .rate-card.primary { background: var(--surface2); border-color: rgba(0,245,255,0.2); }
+  .rate-index { font-size: 9px; color: var(--dim); letter-spacing: 0.15em; margin-bottom: 10px; }
+  .rate-amount { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--cyan); text-shadow: 0 0 15px rgba(0,245,255,0.4); line-height: 1; margin-bottom: 6px; letter-spacing: 0.05em; }
+  .rate-label { font-size: 10px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+  .rate-cta { font-size: 9px; color: rgba(0,245,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s, text-shadow 0.2s; display: flex; align-items: center; gap: 6px; }
+  .rate-cta::before { content: '$ ./schedule'; color: var(--green); opacity: 0.6; }
+  .rate-card:hover .rate-cta::before { opacity: 1; }
+  .rate-card:hover .rate-cta { color: var(--cyan); text-shadow: 0 0 6px var(--cyan); }
+
+  .remote-note { background: #1e3a52; border: 1px solid var(--border); border-left: 2px solid var(--magenta); padding: 10px 16px; font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 28px; }
+  .remote-note .hl { color: var(--magenta); text-shadow: 0 0 6px rgba(255,77,166,0.4); font-weight: 700; }
+
+  /* ── SERVICE CATALOG LABEL ── */
+  .catalog-label {
+    font-size: 9px; letter-spacing: 0.2em; color: var(--dim);
+    text-transform: uppercase; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .catalog-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── SERVICE CARDS GRID ── */
+  .svc-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 28px;
   }
 
-  .rate-card {
+  .svc-card {
     background: var(--surface);
     border: 1px solid var(--border-bright);
-    padding: 20px 22px;
+    padding: 20px 18px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .rate-card::before {
+  .svc-card::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
+    position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--cyan), var(--magenta));
     transform: scaleX(0);
@@ -383,527 +206,312 @@
     transition: transform 0.3s ease;
   }
 
-  .rate-card:hover { border-color: var(--cyan); }
-  .rate-card:hover::before { transform: scaleX(1); }
-
-  .rate-card.primary {
-    background: var(--surface2);
-    border-color: rgba(0,245,255,0.2);
-  }
-
-  .rate-index {
-    font-size: 9px;
-    color: var(--dim);
-    letter-spacing: 0.15em;
-    margin-bottom: 10px;
-  }
-
-  .rate-amount {
-    font-family: var(--display);
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--cyan);
-    text-shadow: 0 0 15px rgba(0,245,255,0.4);
-    line-height: 1;
-    margin-bottom: 6px;
-    letter-spacing: 0.05em;
-  }
-
-  .rate-label {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .rate-cta {
-    font-size: 9px;
-    color: rgba(0,245,255,0.4);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.2s, text-shadow 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .rate-cta::before { content: '$ ./schedule'; color: var(--green); opacity: 0.6; }
-  .rate-card:hover .rate-cta::before { opacity: 1; }
-  .rate-card:hover .rate-cta { color: var(--cyan); text-shadow: 0 0 6px var(--cyan); }
-
-  /* Remote note */
-  .remote-note {
-    background: #1e3a52;
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--magenta);
-    padding: 10px 16px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--muted);
-    line-height: 1.65;
-    margin-bottom: 28px;
-    position: relative;
-    z-index: 1001;
-  }
-
-  .remote-note .hl { color: var(--magenta); text-shadow: 0 0 6px rgba(255,77,166,0.4); font-weight: 700; }
-
-  /* Section */
-  .section {
-    margin-bottom: 28px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    margin-bottom: 2px;
-    background: #1b3045;
-    border: 1px solid var(--border-bright);
-    border-bottom: none;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-    z-index: 1001;
-  }
-
-  .section-index {
-    background: var(--cyan);
-    color: #020408;
-    font-family: var(--display);
-    font-size: 10px;
-    font-weight: 700;
-    padding: 9px 14px;
-    letter-spacing: 0.1em;
-    flex-shrink: 0;
-  }
-
-  .section-title-wrap {
-    padding: 9px 16px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-left: 1px solid var(--border-bright);
-    min-width: 0;
-  }
-
-  .section-name {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
-    flex: 1;
-  }
-
-  .section-count {
-    font-size: 9px;
-    color: var(--dim);
-    letter-spacing: 0.1em;
-    flex-shrink: 0;
-    margin-left: 8px;
-  }
-
-  .service-grid { display: grid; gap: 1px; }
-
-  .service-row {
-    background: #1e3a52;
-    border: 1px solid var(--border);
-    border-top: none;
-    padding: 13px 18px 13px 16px;
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 10px;
-    align-items: start;
-    transition: background 0.15s, border-color 0.15s;
-    position: relative;
-    z-index: 1001;
-  }
-
-  .service-row::after {
+  .svc-card::after {
     content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
+    position: absolute; left: 0; top: 0; bottom: 0;
     width: 2px;
     background: var(--cyan);
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform 0.2s ease;
+    transition: transform 0.25s ease;
   }
 
-  .service-row:hover {
-    background: var(--cyan-dim);
-    border-color: rgba(0,245,255,0.15);
+  .svc-card:hover, .svc-card:active {
+    border-color: var(--cyan);
+    background: var(--surface2);
   }
 
-  .service-row:hover::after { transform: scaleY(1); }
+  .svc-card:hover::before { transform: scaleX(1); }
+  .svc-card:hover::after  { transform: scaleY(1); }
 
-  .service-prefix {
-    font-size: 11px;
-    color: var(--dim);
-    padding-top: 2px;
-    transition: color 0.15s;
-    text-align: center;
+  .svc-card-index { font-size: 9px; color: var(--cyan); letter-spacing: 0.15em; opacity: 0.7; }
+  .svc-card-name { font-family: var(--display); font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; }
+  .svc-card-count { font-size: 9px; color: var(--dim); letter-spacing: 0.1em; margin-top: 4px; }
+  .svc-card-arrow {
+    position: absolute; right: 14px; bottom: 16px;
+    font-size: 16px; color: var(--cyan); opacity: 0.35;
+    transition: opacity 0.2s, right 0.2s;
   }
+  .svc-card:hover .svc-card-arrow { opacity: 0.9; right: 10px; }
 
-  .service-row:hover .service-prefix { color: var(--cyan); }
-
-  .service-name {
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.3;
-    margin-bottom: 5px;
-    letter-spacing: 0.01em;
-  }
-
-  .service-desc {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* Note */
-  .note {
-    background: #1e3a52;
-    border: 1px solid var(--border-bright);
-    padding: 16px 18px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 48px;
-    position: relative;
-    z-index: 1001;
-  }
-
-  .note::before {
-    content: '// NOTE';
-    display: block;
-    font-size: 9px;
-    color: var(--yellow);
-    letter-spacing: 0.2em;
-    margin-bottom: 8px;
-  }
-
+  /* ── NOTE ── */
+  .note { background: #1e3a52; border: 1px solid var(--border-bright); padding: 16px 18px; font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 48px; position: relative; cursor: pointer; transition: border-color 0.2s; }
+  .note:hover { border-color: var(--cyan); }
+  .note::before { content: '// NOTE'; display: block; font-family: var(--mono); font-size: 9px; color: var(--yellow); letter-spacing: 0.2em; margin-bottom: 8px; }
   .note strong { color: var(--text); font-weight: 700; }
 
-  /* Footer */
-  .footer {
-    border-top: 1px solid var(--border-bright);
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 16px;
-    position: relative;
-  }
-
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: -2px; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan));
-    opacity: 0.3;
-  }
-
-  .footer-label {
-    font-size: 9px;
-    color: var(--dim);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .footer-email {
-    font-size: 13px;
-    color: var(--muted);
-  }
-
+  /* ── FOOTER ── */
+  .footer { border-top: 1px solid var(--border-bright); padding-top: 20px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; position: relative; }
+  .footer::before { content: ''; position: absolute; top: -2px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan)); opacity: 0.3; }
+  .footer-label { font-size: 9px; color: var(--dim); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+  .footer-email { font-size: 13px; color: var(--muted); }
   .footer-email .label { color: var(--muted); }
-
-  .footer-email a {
-    color: var(--cyan);
-    text-decoration: none;
-    font-weight: 700;
-    transition: text-shadow 0.2s;
-  }
-
+  .footer-email a { color: var(--cyan); text-decoration: none; font-weight: 700; transition: text-shadow 0.2s; }
   .footer-email a:hover { text-shadow: 0 0 8px var(--cyan); }
-
   .footer-right { text-align: right; }
+  .footer-brand { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--cyan); letter-spacing: 0.15em; text-shadow: 0 0 15px rgba(0,245,255,0.4); display: block; margin-bottom: 4px; }
+  .footer-region { font-size: 9px; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; }
 
-  .footer-brand {
-    font-family: var(--display);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: 0.15em;
-    text-shadow: 0 0 15px rgba(0,245,255,0.4);
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .footer-region {
-    font-size: 9px;
-    color: var(--dim);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  /* Modal */
+  /* ══════════════════════════════════
+     RATE CARD MODALS (unchanged)
+  ══════════════════════════════════ */
   .modal-overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(13,31,45,0.93);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5000;
-    padding: 24px;
-    opacity: 0;
-    pointer-events: none;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5000; padding: 24px;
+    opacity: 0; pointer-events: none;
     transition: opacity 0.2s ease;
   }
-
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
 
   .modal {
     background: var(--surface);
     border: 1px solid var(--border-bright);
-    max-width: 460px;
-    width: 100%;
-    padding: 0;
+    max-width: 460px; width: 100%; padding: 0;
     transform: translateY(16px) scale(0.98);
     transition: transform 0.25s ease;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
-
   .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan)); }
 
-  .modal::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan));
-  }
-
-  .modal-titlebar {
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border-bright);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .modal-titlebar-label {
-    font-size: 9px;
-    color: var(--cyan);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .modal-titlebar-dots {
-    display: flex;
-    gap: 5px;
-  }
-
-  .modal-titlebar-dots span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 1px solid var(--border-bright);
-  }
-
+  .modal-titlebar { background: var(--surface2); border-bottom: 1px solid var(--border-bright); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .modal-titlebar-label { font-size: 9px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; }
+  .modal-titlebar-dots { display: flex; gap: 5px; }
+  .modal-titlebar-dots span { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--border-bright); }
   .modal-titlebar-dots span:nth-child(1) { border-color: var(--magenta); }
   .modal-titlebar-dots span:nth-child(2) { border-color: var(--yellow); }
   .modal-titlebar-dots span:nth-child(3) { border-color: var(--green); }
 
   .modal-body { padding: 28px; }
-
-  .modal-cmd {
-    font-size: 11px;
-    color: var(--green);
-    margin-bottom: 16px;
-    letter-spacing: 0.05em;
-  }
-
+  .modal-cmd { font-size: 11px; color: var(--green); margin-bottom: 16px; letter-spacing: 0.05em; }
   .modal-cmd span { color: var(--cyan); }
-
-  .modal h2 {
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .modal p {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 24px;
-  }
-
-  .modal-btn {
-    display: block;
-    width: 100%;
-    background: var(--cyan);
-    color: #020408;
-    font-family: var(--display);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 14px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    margin-bottom: 8px;
-    transition: box-shadow 0.2s;
-  }
-
+  .modal h2 { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .modal p { font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  .modal-btn { display: block; width: 100%; background: var(--cyan); color: #020408; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-align: center; padding: 14px; border: none; cursor: pointer; text-decoration: none; margin-bottom: 8px; transition: box-shadow 0.2s; }
   .modal-btn:hover { box-shadow: 0 0 20px rgba(0,245,255,0.4); }
-
-  .modal-close {
-    display: block;
-    width: 100%;
-    background: none;
-    border: 1px solid var(--border-bright);
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 10px;
-    cursor: pointer;
-    transition: border-color 0.15s, color 0.15s;
-  }
-
+  .modal-close { display: block; width: 100%; background: none; border: 1px solid var(--border-bright); color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
   .modal-close:hover { border-color: var(--magenta); color: var(--magenta); }
 
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  /* ══════════════════════════════════
+     3-STEP SERVICE SHEET
+  ══════════════════════════════════ */
+  .sheet-overlay {
+    position: fixed; inset: 0;
+    background: rgba(13,31,45,0.88);
+    z-index: 5000;
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s ease;
   }
 
-  @keyframes bootLine {
-    to { opacity: 1; }
+  .sheet-overlay.open { opacity: 1; pointer-events: all; }
+
+  .sheet {
+    background: var(--surface);
+    border: 1px solid var(--border-bright);
+    border-bottom: none;
+    width: 100%;
+    max-width: 820px;
+    max-height: 88vh;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
-  @keyframes bootFade {
-    to { opacity: 0; pointer-events: none; }
+  .sheet-overlay.open .sheet { transform: translateY(0); }
+
+  /* top accent line */
+  .sheet::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan));
+    z-index: 1;
   }
 
-  @keyframes statusPulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--green); }
-    50% { opacity: 0.5; box-shadow: none; }
+  /* ── sheet titlebar ── */
+  .sheet-titlebar {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border-bright);
+    padding: 10px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
   }
 
-  /* Floating book button */
-  .float-book {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--cyan);
-    color: #020408;
-    font-family: var(--display);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 12px 18px;
-    border: none;
+  .sheet-titlebar-left { display: flex; align-items: center; gap: 14px; }
+  .sheet-titlebar-label { font-size: 9px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* step pips */
+  .step-pips { display: flex; gap: 4px; align-items: center; }
+  .pip { width: 22px; height: 3px; background: var(--border); border-radius: 1px; transition: background 0.3s; }
+  .pip.active { background: var(--cyan); box-shadow: 0 0 6px rgba(0,229,255,0.5); }
+  .pip.done   { background: var(--green); }
+
+  .sheet-titlebar-dots { display: flex; gap: 5px; }
+  .sheet-titlebar-dots span { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--border-bright); }
+  .sheet-titlebar-dots span:nth-child(1) { border-color: var(--magenta); }
+  .sheet-titlebar-dots span:nth-child(2) { border-color: var(--yellow); }
+  .sheet-titlebar-dots span:nth-child(3) { border-color: var(--green); }
+
+  /* ── sheet scroll body ── */
+  .sheet-body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 24px 28px;
+  }
+  .sheet-body::-webkit-scrollbar { width: 4px; }
+  .sheet-body::-webkit-scrollbar-thumb { background: var(--border-bright); }
+
+  .sheet-cmd { font-size: 11px; color: var(--green); margin-bottom: 14px; letter-spacing: 0.05em; }
+  .sheet-cmd span { color: var(--cyan); }
+
+  .sheet-h2 { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .sheet-sub { font-size: 11px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+
+  /* selected tag */
+  .sel-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border: 1px solid rgba(0,229,255,0.3);
+    color: var(--cyan); background: var(--cyan-dim);
+    margin-bottom: 18px;
+  }
+  .sel-tag-check { color: var(--green); }
+
+  /* ── option rows ── */
+  .options-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .opt-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 14px;
+    border: 1px solid var(--border);
+    background: #1e3a52;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(12px);
-    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s;
+    transition: background 0.15s, border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    position: relative; overflow: hidden;
   }
 
-  .float-book.visible {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateY(0);
+  .opt-row::after {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--cyan);
+    transform: scaleY(0); transform-origin: top;
+    transition: transform 0.15s;
   }
 
+  .opt-row:hover { background: var(--cyan-dim); border-color: rgba(0,229,255,0.2); }
+  .opt-row:hover::after { transform: scaleY(1); }
+  .opt-row.selected { background: var(--cyan-dim); border-color: rgba(0,229,255,0.35); }
+  .opt-row.selected::after { transform: scaleY(1); background: var(--magenta); }
+
+  .opt-indicator {
+    width: 18px; height: 18px;
+    border: 1px solid var(--border-bright);
+    display: grid; place-items: center;
+    flex-shrink: 0; font-size: 10px; color: var(--green);
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .opt-row.selected .opt-indicator { background: var(--cyan); border-color: var(--cyan); color: #020408; font-weight: 700; }
+
+  .opt-text { flex: 1; min-width: 0; }
+  .opt-name { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .opt-desc { font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── form fields ── */
+  .form-group { margin-bottom: 14px; }
+  .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .form-label { display: block; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 5px; opacity: 0.8; }
+
+  .form-input, .form-textarea {
+    font-family: var(--mono); font-size: 12px; color: var(--text);
+    background: var(--bg); border: 1px solid var(--border-bright);
+    outline: none; width: 100%; padding: 9px 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    letter-spacing: 0.03em; -webkit-appearance: none; border-radius: 0;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--cyan); box-shadow: 0 0 8px rgba(0,229,255,0.15); }
+  .form-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+  /* ── sheet footer actions ── */
+  .sheet-actions {
+    padding: 14px 28px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 8px;
+    flex-shrink: 0;
+    background: var(--surface);
+  }
+
+  .sheet-btn-primary {
+    flex: 1;
+    background: var(--cyan); color: #020408;
+    font-family: var(--display); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; text-align: center;
+    padding: 13px; border: none; cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  .sheet-btn-primary:hover { box-shadow: 0 0 20px rgba(0,245,255,0.4); }
+  .sheet-btn-primary:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+
+  .sheet-btn-secondary {
+    background: none; border: 1px solid var(--border-bright); color: var(--muted);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 13px 16px; cursor: pointer;
+    transition: border-color 0.15s, color 0.15s; white-space: nowrap;
+  }
+  .sheet-btn-secondary:hover { border-color: var(--magenta); color: var(--magenta); }
+
+  /* ── thank you ── */
+  .thankyou { text-align: center; padding: 2rem 0 1rem; }
+  .ty-icon { font-family: var(--display); font-size: 28px; color: var(--green); text-shadow: 0 0 20px rgba(57,255,133,0.5); display: block; margin-bottom: 16px; letter-spacing: 0.1em; animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+  .ty-title { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; text-shadow: 0 0 15px rgba(0,245,255,0.3); }
+  .ty-sub { font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 320px; margin: 0 auto; }
+  .ty-sub span { color: var(--cyan); }
+
+  /* ── float btn ── */
+  .float-book { position: fixed; bottom: 28px; right: 28px; z-index: 2000; display: flex; align-items: center; gap: 8px; background: var(--cyan); color: #020408; font-family: var(--display); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 18px; border: none; cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s; }
+  .float-book.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
   .float-book:hover { box-shadow: 0 0 24px rgba(0,229,255,0.5); }
 
-  .float-book-arrow { font-size: 14px; line-height: 1; }
+  /* ── animations ── */
+  @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes bootLine  { to { opacity: 1; } }
+  @keyframes bootFade  { to { opacity: 0; pointer-events: none; } }
+  @keyframes statusPulse { 0%,100% { opacity:1; box-shadow:0 0 6px var(--green); } 50% { opacity:0.5; box-shadow:none; } }
+  @keyframes popIn { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-  /* ─── MOBILE ─── */
+  /* ── MOBILE ── */
   @media (max-width: 600px) {
-    .chrome-row1 {
-      padding: 5px 14px;
-      justify-content: space-between;
-    }
+    .chrome-row1 { padding: 5px 14px; }
     .chrome-row1 .cmd-desktop { display: none; }
-    .chrome-row1 .cmd-mobile { display: block; }
-
+    .chrome-row1 .cmd-mobile  { display: block; }
     .chrome-row2 { padding: 10px 14px; }
-
     .brand-name { font-size: 13px; }
-
-    /* Hide email in header chrome — saves space */
     .chrome-email { display: none; }
-
-    /* Tighten status pill text */
-    .status-pill { font-size: 8px; padding: 3px 8px; letter-spacing: 0.1em; }
-
-    /* Page padding */
+    .status-pill { font-size: 8px; padding: 3px 8px; }
     .page { padding: 20px 14px 72px; }
-
-    /* Header tighter */
     .header { padding: 20px 16px; margin-bottom: 16px; }
     .header-path { font-size: 9px; word-break: break-all; }
-
     .pricing { grid-template-columns: 1fr; }
     .rate-amount { font-size: 24px; }
-
-    /* Remote note tighter */
     .remote-note { margin-bottom: 20px; font-size: 12px; }
-
-    /* Section header — prevent "Education & Guidance" from overflowing */
-    .section-title-wrap { padding: 9px 10px; }
-    .section-name { font-size: 9px; letter-spacing: 0.08em; }
-    .section-count { display: none; }
-
-    /* Service rows tighter */
-    .service-row { padding: 11px 14px 11px 12px; }
-    .service-name { font-size: 13px; }
-    .service-desc { font-size: 12px; }
-
-    /* Footer stacks naturally */
+    .svc-cards { grid-template-columns: 1fr 1fr; gap: 4px; }
+    .svc-card-name { font-size: 10px; }
     .footer { flex-direction: column; align-items: flex-start; }
     .footer-right { text-align: left; }
-
     .float-book { bottom: 16px; right: 16px; padding: 10px 14px; font-size: 9px; }
+    .sheet-body { padding: 18px 16px; }
+    .sheet-actions { padding: 12px 16px; }
+    .form-row2 { grid-template-columns: 1fr; }
+    .opt-name { font-size: 13px; }
   }
 </style>
 </head>
@@ -923,7 +531,7 @@
   <div class="boot-line">[ READY ] All systems operational. Welcome.</div>
 </div>
 
-<!-- Top Chrome -->
+<!-- Chrome -->
 <div class="chrome-top">
   <div class="chrome-row1">
     <span class="cmd-left cmd-desktop">root@baremetalbit:~$ ./services --list</span>
@@ -933,15 +541,15 @@
   <div class="chrome-row2">
     <div class="chrome-brand">
       <div class="nav-dropdown">
-        <div class="brand-icon" id="nav-toggle" onclick="toggleNav()" title="Jump to section">
+        <div class="brand-icon" id="nav-toggle" onclick="toggleNav()">
           <span style="font-size:14px;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">&#62;</span>
         </div>
         <div class="nav-menu" id="nav-menu">
           <div class="nav-menu-label">// jump_to_section</div>
-          <a class="nav-item" onclick="jumpToSection('section-windows')"><span class="nav-item-index">01</span> Windows Support</a>
-          <a class="nav-item" onclick="jumpToSection('section-networking')"><span class="nav-item-index">02</span> Networking</a>
-          <a class="nav-item" onclick="jumpToSection('section-hardware')"><span class="nav-item-index">03</span> Hardware</a>
-          <a class="nav-item" onclick="jumpToSection('section-education')"><span class="nav-item-index">04</span> Education &amp; Guidance</a>
+          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">01</span> Windows Support</a>
+          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">02</span> Networking</a>
+          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">03</span> Hardware</a>
+          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">04</span> Education &amp; Guidance</a>
         </div>
       </div>
       <div>
@@ -960,13 +568,8 @@
 
   <!-- Header -->
   <div class="header">
-    <div class="header-path">
-      <span>~/baremetalbit</span>/services/charleston-sc $ cat README.md
-    </div>
-    <h1>
-      LOCAL IT SUPPORT.<br>
-      <span class="highlight">DONE</span> <span class="magenta">RIGHT.</span>
-    </h1>
+    <div class="header-path"><span>~/baremetalbit</span>/services/charleston-sc $ cat README.md</div>
+    <h1>LOCAL IT SUPPORT.<br><span class="highlight">DONE</span> <span class="magenta">RIGHT.</span></h1>
     <p class="header-desc">Hands-on tech help for home users and small businesses. No call centers, no runaround — just someone who actually knows what they're doing.</p>
     <p class="header-contact"><span class="label">Contact: </span><a href="mailto:baremetalbit@gmail.com">baremetalbit@gmail.com</a></p>
   </div>
@@ -991,150 +594,43 @@
     <span class="hl">REMOTE_SUPPORT</span> — available to existing clients upon request. Contact to enable access.
   </div>
 
-  <!-- Windows Support -->
-  <div class="section" id="section-windows">
-    <div class="section-header">
-      <div class="section-index">01</div>
-      <div class="section-title-wrap">
-        <span class="section-name">Windows Support</span>
-        <span class="section-count">4 services</span>
+  <!-- Service Cards -->
+  <div id="section-services">
+    <div class="catalog-label">// SELECT A SERVICE TO GET STARTED</div>
+    <div class="svc-cards">
+
+      <div class="svc-card" onclick="openSheet('windows')">
+        <div class="svc-card-index">// 01</div>
+        <div class="svc-card-name">Windows Support</div>
+        <div class="svc-card-count">4 services</div>
+        <span class="svc-card-arrow">›</span>
       </div>
-    </div>
-    <div class="service-grid">
-      <div class="service-row">
-        <div class="service-prefix">[01]</div>
-        <div>
-          <div class="service-name">Slowness &amp; Performance Tuning</div>
-          <div class="service-desc">Diagnose and resolve sluggish systems — startup optimization, bloatware removal, resource management.</div>
-        </div>
+
+      <div class="svc-card" onclick="openSheet('networking')">
+        <div class="svc-card-index">// 02</div>
+        <div class="svc-card-name">Networking</div>
+        <div class="svc-card-count">3 services</div>
+        <span class="svc-card-arrow">›</span>
       </div>
-      <div class="service-row">
-        <div class="service-prefix">[02]</div>
-        <div>
-          <div class="service-name">Virus &amp; Malware Removal</div>
-          <div class="service-desc">Full scan and clean using professional tools. Includes follow-up recommendations to prevent reinfection.</div>
-        </div>
+
+      <div class="svc-card" onclick="openSheet('hardware')">
+        <div class="svc-card-index">// 03</div>
+        <div class="svc-card-name">Hardware</div>
+        <div class="svc-card-count">3 services</div>
+        <span class="svc-card-arrow">›</span>
       </div>
-      <div class="service-row">
-        <div class="service-prefix">[03]</div>
-        <div>
-          <div class="service-name">OS Reinstall &amp; Setup</div>
-          <div class="service-desc">Fresh Windows install with drivers, updates, and essential software configured properly from the start.</div>
-        </div>
+
+      <div class="svc-card" onclick="openSheet('education')">
+        <div class="svc-card-index">// 04</div>
+        <div class="svc-card-name">Education &amp; Guidance</div>
+        <div class="svc-card-count">3 services</div>
+        <span class="svc-card-arrow">›</span>
       </div>
-      <div class="service-row">
-        <div class="service-prefix">[04]</div>
-        <div>
-          <div class="service-name">Driver &amp; Update Issues</div>
-          <div class="service-desc">Resolve failed updates, missing drivers, and compatibility problems.</div>
-        </div>
-      </div>
+
     </div>
   </div>
 
-  <!-- Networking -->
-  <div class="section" id="section-networking">
-    <div class="section-header">
-      <div class="section-index">02</div>
-      <div class="section-title-wrap">
-        <span class="section-name">Networking</span>
-        <span class="section-count">3 services</span>
-      </div>
-    </div>
-    <div class="service-grid">
-      <div class="service-row">
-        <div class="service-prefix">[01]</div>
-        <div>
-          <div class="service-name">Wi-Fi Troubleshooting</div>
-          <div class="service-desc">Diagnose dead zones, dropped connections, and slow speeds. Router placement and configuration advice.</div>
-        </div>
-      </div>
-      <div class="service-row">
-        <div class="service-prefix">[02]</div>
-        <div>
-          <div class="service-name">Router &amp; Modem Setup</div>
-          <div class="service-desc">New equipment setup, ISP configuration, guest networks, and basic security hardening.</div>
-        </div>
-      </div>
-      <div class="service-row">
-        <div class="service-prefix">[03]</div>
-        <div>
-          <div class="service-name">Home Network Organization</div>
-          <div class="service-desc">Device management, parental controls, network-wide ad blocking, and general cleanup.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hardware -->
-  <div class="section" id="section-hardware">
-    <div class="section-header">
-      <div class="section-index">03</div>
-      <div class="section-title-wrap">
-        <span class="section-name">Hardware</span>
-        <span class="section-count">3 services</span>
-      </div>
-    </div>
-    <div class="service-grid">
-      <div class="service-row">
-        <div class="service-prefix">[01]</div>
-        <div>
-          <div class="service-name">RAM &amp; SSD Upgrades</div>
-          <div class="service-desc">Source and install compatible components. One of the best bang-for-buck upgrades for older machines.</div>
-        </div>
-      </div>
-      <div class="service-row">
-        <div class="service-prefix">[02]</div>
-        <div>
-          <div class="service-name">Peripheral Setup</div>
-          <div class="service-desc">Printers, monitors, external drives, webcams — properly configured and tested.</div>
-        </div>
-      </div>
-      <div class="service-row">
-        <div class="service-prefix">[03]</div>
-        <div>
-          <div class="service-name">Data Backup &amp; Transfer</div>
-          <div class="service-desc">Set up reliable local or cloud backup. Migrate data between old and new machines.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Education -->
-  <div class="section" id="section-education">
-    <div class="section-header">
-      <div class="section-index">04</div>
-      <div class="section-title-wrap">
-        <span class="section-name">Education &amp; Guidance</span>
-        <span class="section-count">3 services</span>
-      </div>
-    </div>
-    <div class="service-grid">
-      <div class="service-row">
-        <div class="service-prefix">[01]</div>
-        <div>
-          <div class="service-name">Device Walkthroughs</div>
-          <div class="service-desc">One-on-one sessions for laptops, tablets, and smartphones. Learn at your pace, no judgment.</div>
-        </div>
-      </div>
-      <div class="service-row">
-        <div class="service-prefix">[02]</div>
-        <div>
-          <div class="service-name">Security &amp; Scam Awareness</div>
-          <div class="service-desc">Recognize phishing, set up strong passwords, and understand what to actually worry about online.</div>
-        </div>
-      </div>
-      <div class="service-row">
-        <div class="service-prefix">[03]</div>
-        <div>
-          <div class="service-name">Email, Cloud &amp; Password Setup</div>
-          <div class="service-desc">Gmail, iCloud, OneDrive, password managers — properly set up and explained so you're not locked out.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="note">
+  <div class="note" onclick="openSheet('other')">
     <strong>Not sure if your issue is on the list?</strong> Reach out anyway. If it's something I can't handle, I'll tell you straight and point you in the right direction — no charge for that conversation.
   </div>
 
@@ -1149,11 +645,10 @@
       <span class="footer-region">// Serving the Charleston, SC Area</span>
     </div>
   </div>
-
 </div>
 
-<!-- On-Site Modal -->
-<div class="modal-overlay" id="modal-onsite" onclick="closeOnOverlay(event, 'onsite')">
+<!-- ══ RATE MODALS ══ -->
+<div class="modal-overlay" id="modal-onsite" onclick="closeOnOverlay(event,'onsite')">
   <div class="modal">
     <div class="modal-titlebar">
       <span class="modal-titlebar-label">// schedule_session.sh</span>
@@ -1169,8 +664,7 @@
   </div>
 </div>
 
-<!-- Consult Modal -->
-<div class="modal-overlay" id="modal-consult" onclick="closeOnOverlay(event, 'consult')">
+<div class="modal-overlay" id="modal-consult" onclick="closeOnOverlay(event,'consult')">
   <div class="modal">
     <div class="modal-titlebar">
       <span class="modal-titlebar-label">// book_consult.sh</span>
@@ -1186,55 +680,290 @@
   </div>
 </div>
 
-<button class="float-book" id="float-book" onclick="jumpToSection('section-pricing')">
-  <span class="float-book-arrow">↑</span> Book a Visit
+<!-- ══ 3-STEP SERVICE SHEET ══ -->
+<div class="sheet-overlay" id="sheet-overlay" onclick="closeSheetOnOverlay(event)">
+  <div class="sheet" id="sheet">
+
+    <div class="sheet-titlebar">
+      <div class="sheet-titlebar-left">
+        <span class="sheet-titlebar-label" id="sheet-label">// service_request.sh</span>
+        <div class="step-pips">
+          <div class="pip active" id="pip1"></div>
+          <div class="pip" id="pip2"></div>
+          <div class="pip" id="pip3"></div>
+        </div>
+      </div>
+      <div class="sheet-titlebar-dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="sheet-body" id="sheet-body"></div>
+    <div class="sheet-actions" id="sheet-actions"></div>
+
+  </div>
+</div>
+
+<button class="float-book" id="float-book" onclick="jumpTo('section-pricing')">
+  <span>↑</span> Book a Visit
 </button>
 
 <script>
-  function toggleNav() {
-    const menu = document.getElementById('nav-menu');
-    const icon = document.getElementById('nav-toggle');
-    menu.classList.toggle('open');
-    icon.classList.toggle('open');
+/* ── DATA ── */
+var SVCS = {
+  windows: {
+    label: 'WINDOWS SUPPORT', cmd: 'windows',
+    items: [
+      { name: 'Slowness & Performance Tuning',   desc: 'Startup optimization, bloatware removal, resource management.' },
+      { name: 'Virus & Malware Removal',          desc: 'Full scan and clean using professional tools.' },
+      { name: 'OS Reinstall & Setup',             desc: 'Fresh Windows install, drivers, updates, software.' },
+      { name: 'Driver & Update Issues',           desc: 'Failed updates, missing drivers, compatibility problems.' }
+    ]
+  },
+  networking: {
+    label: 'NETWORKING', cmd: 'networking',
+    items: [
+      { name: 'Wi-Fi Troubleshooting',      desc: 'Dead zones, dropped connections, slow speeds.' },
+      { name: 'Router & Modem Setup',       desc: 'New equipment, ISP config, guest networks, security.' },
+      { name: 'Home Network Organization',  desc: 'Device management, parental controls, ad blocking.' }
+    ]
+  },
+  hardware: {
+    label: 'HARDWARE', cmd: 'hardware',
+    items: [
+      { name: 'RAM & SSD Upgrades',       desc: 'Source and install compatible components.' },
+      { name: 'Peripheral Setup',          desc: 'Printers, monitors, drives, webcams — configured and tested.' },
+      { name: 'Data Backup & Transfer',    desc: 'Local or cloud backup, migrate between machines.' }
+    ]
+  },
+  education: {
+    label: 'EDUCATION & GUIDANCE', cmd: 'education',
+    items: [
+      { name: 'Device Walkthroughs',             desc: 'One-on-one sessions for laptops, tablets, smartphones.' },
+      { name: 'Security & Scam Awareness',       desc: 'Phishing, passwords, and what to actually worry about.' },
+      { name: 'Email, Cloud & Password Setup',   desc: 'Gmail, iCloud, OneDrive, password managers.' }
+    ]
+  },
+  other: {
+    label: 'OTHER / NOT LISTED', cmd: 'other',
+    items: [
+      { name: 'Something not on the list', desc: "Describe your issue in the next step — I'll let you know if I can help." }
+    ]
   }
+};
 
-  function jumpToSection(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+var FORMSPREE_ID = 'mykvplrn';
+
+/* ── STATE ── */
+var activeCat = null;
+var selIdx    = null;
+var step      = 1;
+
+/* ── SHEET OPEN / CLOSE ── */
+function openSheet(cat) {
+  activeCat = cat;
+  selIdx    = null;
+  step      = 1;
+  renderSheet();
+  document.getElementById('sheet-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSheet() {
+  document.getElementById('sheet-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeSheetOnOverlay(e) {
+  if (e.target === document.getElementById('sheet-overlay')) closeSheet();
+}
+
+/* ── RENDER ── */
+function renderSheet() {
+  updatePips();
+  if (step === 1) renderStep1();
+  else if (step === 2) renderStep2();
+  else renderStep3();
+  /* scroll to top on each step */
+  document.getElementById('sheet-body').scrollTop = 0;
+}
+
+function updatePips() {
+  for (var n = 1; n <= 3; n++) {
+    var p = document.getElementById('pip' + n);
+    p.className = 'pip' + (n < step ? ' done' : n === step ? ' active' : '');
+  }
+}
+
+/* STEP 1 */
+function renderStep1() {
+  var svc = SVCS[activeCat];
+  document.getElementById('sheet-label').textContent = '// ' + svc.cmd + '_request.sh';
+
+  var opts = '';
+  svc.items.forEach(function(item, i) {
+    opts += '<div class="opt-row" id="opt-' + i + '" onclick="pickOpt(' + i + ')">' +
+      '<div class="opt-indicator" id="ind-' + i + '"></div>' +
+      '<div class="opt-text">' +
+        '<div class="opt-name">' + item.name + '</div>' +
+        '<div class="opt-desc">' + item.desc + '</div>' +
+      '</div></div>';
+  });
+
+  document.getElementById('sheet-body').innerHTML =
+    '<div class="sheet-cmd">$ ./request <span>--cat=' + svc.cmd + '</span></div>' +
+    '<div class="sheet-h2">What do you need help with?</div>' +
+    '<div class="sheet-sub">Select the service that best matches your issue.</div>' +
+    '<div class="options-list">' + opts + '</div>';
+
+  document.getElementById('sheet-actions').innerHTML =
+    '<button class="sheet-btn-secondary" onclick="closeSheet()">[ ESC ] Cancel</button>' +
+    '<button class="sheet-btn-primary" id="btn-cont" onclick="goStep2()" disabled>CONTINUE →</button>';
+}
+
+function pickOpt(i) {
+  selIdx = i;
+  var rows = document.querySelectorAll('.opt-row');
+  rows.forEach(function(r, idx) {
+    r.classList.toggle('selected', idx === i);
+    var ind = document.getElementById('ind-' + idx);
+    if (ind) ind.textContent = idx === i ? '✓' : '';
+  });
+  var btn = document.getElementById('btn-cont');
+  if (btn) btn.disabled = false;
+}
+
+/* STEP 2 */
+function goStep2() {
+  if (selIdx === null) return;
+  step = 2;
+  renderSheet();
+}
+
+function renderStep2() {
+  var svc    = SVCS[activeCat];
+  var chosen = svc.items[selIdx].name;
+  document.getElementById('sheet-label').textContent = '// contact_info.sh';
+
+  document.getElementById('sheet-body').innerHTML =
+    '<div class="sheet-cmd">$ ./submit <span>--service="' + chosen + '"</span></div>' +
+    '<div class="sheet-h2">Your Contact Info</div>' +
+    '<div class="sel-tag"><span class="sel-tag-check">✓</span>' + chosen + '</div>' +
+    '<div class="form-row2">' +
+      '<div class="form-group"><label class="form-label">// First Name *</label><input class="form-input" id="f-first" type="text" placeholder="Jane" /></div>' +
+      '<div class="form-group"><label class="form-label">// Last Name *</label><input class="form-input" id="f-last" type="text" placeholder="Smith" /></div>' +
+    '</div>' +
+    '<div class="form-group"><label class="form-label">// Phone Number *</label><input class="form-input" id="f-phone" type="tel" placeholder="(843) 555-0100" /></div>' +
+    '<div class="form-group"><label class="form-label">// Email Address *</label><input class="form-input" id="f-email" type="email" placeholder="jane@email.com" /></div>' +
+    '<div class="form-group"><label class="form-label">// Describe Your Issue</label><textarea class="form-textarea" id="f-desc" placeholder="Brief description — the more detail, the better prepared I\'ll be."></textarea></div>' +
+    '<div class="form-group"><label class="form-label">// Your Availability</label><input class="form-input" id="f-avail" type="text" placeholder="e.g. Weekday evenings, Saturday mornings" /></div>';
+
+  document.getElementById('sheet-actions').innerHTML =
+    '<button class="sheet-btn-secondary" onclick="goBack()">← BACK</button>' +
+    '<button class="sheet-btn-primary" onclick="submitRequest()">SUBMIT REQUEST →</button>';
+}
+
+function goBack() {
+  step = 1;
+  renderSheet();
+  setTimeout(function() { if (selIdx !== null) pickOpt(selIdx); }, 10);
+}
+
+/* STEP 3 */
+function submitRequest() {
+  var first = document.getElementById('f-first');
+  var phone = document.getElementById('f-phone');
+  var email = document.getElementById('f-email');
+
+  if (!first.value.trim()) { first.focus(); return; }
+  if (!phone.value.trim()) { phone.focus(); return; }
+  if (!email.value.trim()) { email.focus(); return; }
+
+  var svc    = SVCS[activeCat];
+  var chosen = svc.items[selIdx].name;
+
+  var payload = {
+    _subject:          'New Service Request — BareMetalBit',
+    service_category:  svc.label,
+    service_selected:  chosen,
+    first_name:        first.value.trim(),
+    last_name:         document.getElementById('f-last').value.trim(),
+    phone:             phone.value.trim(),
+    email:             email.value.trim(),
+    issue_description: document.getElementById('f-desc').value.trim(),
+    availability:      document.getElementById('f-avail').value.trim()
+  };
+
+  fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    step = 3; renderSheet();
+  })
+  .catch(function() {
+    step = 3; renderSheet();
+  });
+}
+
+function renderStep3() {
+  document.getElementById('sheet-label').textContent = '// transmission_complete.sh';
+  document.getElementById('sheet-body').innerHTML =
+    '<div class="thankyou">' +
+      '<span class="ty-icon">[ OK ]</span>' +
+      '<div class="ty-title">// Request Received</div>' +
+      '<p class="ty-sub">Thanks for reaching out. I\'ll review your request and get back to you as soon as possible — usually within a few hours.<br><br><span>baremetalbit@gmail.com</span></p>' +
+    '</div>';
+
+  document.getElementById('sheet-actions').innerHTML =
+    '<button class="sheet-btn-primary" onclick="closeSheet()">[ ESC ] Close</button>';
+}
+
+/* ── RATE CARD MODALS ── */
+function openModal(type) {
+  document.getElementById('modal-' + type).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(type) {
+  document.getElementById('modal-' + type).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e, type) {
+  if (e.target === document.getElementById('modal-' + type)) closeModal(type);
+}
+
+/* ── NAV ── */
+function toggleNav() {
+  document.getElementById('nav-menu').classList.toggle('open');
+  document.getElementById('nav-toggle').classList.toggle('open');
+}
+function jumpTo(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('nav-menu').classList.remove('open');
+  document.getElementById('nav-toggle').classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('nav-toggle').contains(e.target) &&
+      !document.getElementById('nav-menu').contains(e.target)) {
     document.getElementById('nav-menu').classList.remove('open');
     document.getElementById('nav-toggle').classList.remove('open');
   }
+});
 
-  document.addEventListener('click', function(e) {
-    if (!document.getElementById('nav-toggle').contains(e.target) &&
-        !document.getElementById('nav-menu').contains(e.target)) {
-      document.getElementById('nav-menu').classList.remove('open');
-      document.getElementById('nav-toggle').classList.remove('open');
-    }
-  });
+/* ── FLOAT BTN ── */
+var floatBtn = document.getElementById('float-book');
+window.addEventListener('scroll', function() {
+  floatBtn.classList.toggle('visible', window.scrollY > 300);
+});
 
-  const floatBtn = document.getElementById('float-book');
-  window.addEventListener('scroll', function() {
-    floatBtn.classList.toggle('visible', window.scrollY > 300);
-  });
-
-  function openModal(type) {
-    document.getElementById('modal-' + type).classList.add('open');
-    document.body.style.overflow = 'hidden';
+/* ── ESC KEY ── */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal('onsite');
+    closeModal('consult');
+    closeSheet();
   }
-
-  function closeModal(type) {
-    document.getElementById('modal-' + type).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeOnOverlay(event, type) {
-    if (event.target === document.getElementById('modal-' + type)) closeModal(type);
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeModal('onsite'); closeModal('consult'); }
-  });
+});
 </script>
 </body>
 </html>
