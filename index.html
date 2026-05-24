@@ -242,6 +242,9 @@
   @keyframes popIn { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   @keyframes cyanPulse { 0%,100% { text-shadow:0 0 8px var(--cyan), 0 0 16px var(--cyan); opacity:1; } 50% { text-shadow:0 0 4px var(--cyan); opacity:0.7; } }
 
+  /* hide mobile pricing on desktop — must come BEFORE the media query */
+  .m-pricing { display: none; }
+
   /* ══════════════════════════════════
      MOBILE OVERRIDES (≤600px)
   ══════════════════════════════════ */
@@ -385,8 +388,7 @@
     .ty-sub   { font-size: 15px; }
   }
 
-  /* hide mobile pricing on desktop */
-  .m-pricing { display: none; }
+
 </style>
 </head>
 <body>
