@@ -295,13 +295,10 @@
     .header-desc { font-size: 15px; line-height: 1.75; }
     .header-contact { font-size: 15px; }
 
-    /* ── MOBILE pricing: two vertical columns ── */
-    /* Hide desktop pricing grid entirely */
+    /* Mobile pricing: stacked vertically */
+    .m-pricing { display: grid; grid-template-columns: 1fr; gap: 4px; margin-bottom: 4px; }
     .pricing { display: none; }
     .remote-note { font-size: 14px; margin-bottom: 14px; }
-
-    /* Mobile pricing replaces it — shown only on mobile */
-    .m-pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
     .m-col { display: flex; flex-direction: column; gap: 4px; }
 
     /* Services column card */
