@@ -296,7 +296,7 @@
     .header-contact { font-size: 15px; }
 
     /* Mobile pricing: stacked vertically */
-    .m-pricing { display: grid; grid-template-columns: 1fr; gap: 4px; margin-bottom: 4px; }
+    .m-pricing { display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px; }
     .pricing { display: none; }
     .remote-note { font-size: 14px; margin-bottom: 14px; }
     .m-col { display: flex; flex-direction: column; gap: 4px; }
@@ -475,25 +475,19 @@
     </div>
   </div>
 
-  <!-- MOBILE pricing: two side-by-side columns -->
+  <!-- MOBILE pricing: stacked vertically -->
   <div class="m-pricing" id="m-section-pricing">
-    <!-- Services column -->
-    <div class="m-col">
-      <div class="m-svc-card" onclick="openServicesSheet()">
-        <div class="m-card-index">// RATE_01</div>
-        <div class="m-card-amount">$75/hr</div>
-        <div class="m-card-label">Services</div>
-        <div class="m-card-cta">$ ./schedule →</div>
-      </div>
+    <div class="m-svc-card" onclick="openServicesSheet()">
+      <div class="m-card-index">// RATE_01</div>
+      <div class="m-card-amount">$75/hr</div>
+      <div class="m-card-label">Services</div>
+      <div class="m-card-cta">$ ./schedule →</div>
     </div>
-    <!-- Consultation column -->
-    <div class="m-col">
-      <div class="m-consult-card" onclick="openSheet('consult')">
-        <div class="m-card-index">// RATE_02</div>
-        <div class="m-card-amount" style="color:var(--green);text-shadow:0 0 12px rgba(57,255,133,0.4);">FREE</div>
-        <div class="m-card-label">Consultation</div>
-        <div class="m-card-cta" style="color:var(--green);">$ ./consult →</div>
-      </div>
+    <div class="m-consult-card" onclick="openSheet('consult')">
+      <div class="m-card-index">// RATE_02</div>
+      <div class="m-card-amount" style="color:var(--green);text-shadow:0 0 12px rgba(57,255,133,0.4);">FREE</div>
+      <div class="m-card-label">Free Initial Consultation</div>
+      <div class="m-card-cta" style="color:var(--green);">$ ./consult →</div>
     </div>
   </div>
 
