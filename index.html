@@ -147,17 +147,17 @@
   .header-contact a { color: var(--cyan); text-decoration: none; font-weight: 700; transition: text-shadow 0.2s; }
   .header-contact a:hover { text-shadow: 0 0 10px var(--cyan); }
 
-  /* ── PRICING ── */
+  /* ── PRICING — always side by side ── */
   .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
-  .rate-card { background: var(--surface); border: 1px solid var(--border-bright); padding: 20px 22px; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.2s; }
+  .rate-card { background: var(--surface); border: 1px solid var(--border-bright); padding: 20px 16px; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.2s; }
   .rate-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
   .rate-card:hover { border-color: var(--cyan); }
   .rate-card:hover::before { transform: scaleX(1); }
   .rate-card.primary { background: var(--surface2); border-color: rgba(0,245,255,0.2); }
   .rate-index { font-size: 9px; color: var(--dim); letter-spacing: 0.15em; margin-bottom: 10px; }
-  .rate-amount { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--cyan); text-shadow: 0 0 15px rgba(0,245,255,0.4); line-height: 1; margin-bottom: 6px; letter-spacing: 0.05em; }
-  .rate-label { font-size: 10px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
-  .rate-cta { font-size: 9px; color: rgba(0,245,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s, text-shadow 0.2s; display: flex; align-items: center; gap: 6px; }
+  .rate-amount { font-family: var(--display); font-size: clamp(20px, 6vw, 30px); font-weight: 700; color: var(--cyan); text-shadow: 0 0 15px rgba(0,245,255,0.4); line-height: 1; margin-bottom: 6px; letter-spacing: 0.03em; }
+  .rate-label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+  .rate-cta { font-size: 9px; color: rgba(0,245,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s, text-shadow 0.2s; display: flex; align-items: center; gap: 6px; }
   .rate-cta::before { content: '$ ./schedule'; color: var(--green); opacity: 0.6; }
   .rate-card:hover .rate-cta::before { opacity: 1; }
   .rate-card:hover .rate-cta { color: var(--cyan); text-shadow: 0 0 6px var(--cyan); }
@@ -253,48 +253,6 @@
   .footer-region { font-size: 9px; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; }
 
   /* ══════════════════════════════════
-     RATE CARD MODALS (unchanged)
-  ══════════════════════════════════ */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(13,31,45,0.93);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 5000; padding: 24px;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border-bright);
-    max-width: 460px; width: 100%; padding: 0;
-    transform: translateY(16px) scale(0.98);
-    transition: transform 0.25s ease;
-    position: relative; overflow: hidden;
-  }
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-  .modal::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--cyan)); }
-
-  .modal-titlebar { background: var(--surface2); border-bottom: 1px solid var(--border-bright); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
-  .modal-titlebar-label { font-size: 9px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; }
-  .modal-titlebar-dots { display: flex; gap: 5px; }
-  .modal-titlebar-dots span { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--border-bright); }
-  .modal-titlebar-dots span:nth-child(1) { border-color: var(--magenta); }
-  .modal-titlebar-dots span:nth-child(2) { border-color: var(--yellow); }
-  .modal-titlebar-dots span:nth-child(3) { border-color: var(--green); }
-
-  .modal-body { padding: 28px; }
-  .modal-cmd { font-size: 11px; color: var(--green); margin-bottom: 16px; letter-spacing: 0.05em; }
-  .modal-cmd span { color: var(--cyan); }
-  .modal h2 { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
-  .modal p { font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-  .modal-btn { display: block; width: 100%; background: var(--cyan); color: #020408; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-align: center; padding: 14px; border: none; cursor: pointer; text-decoration: none; margin-bottom: 8px; transition: box-shadow 0.2s; }
-  .modal-btn:hover { box-shadow: 0 0 20px rgba(0,245,255,0.4); }
-  .modal-close { display: block; width: 100%; background: none; border: 1px solid var(--border-bright); color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
-  .modal-close:hover { border-color: var(--magenta); color: var(--magenta); }
-
-  /* ══════════════════════════════════
      3-STEP SERVICE SHEET
   ══════════════════════════════════ */
   .sheet-overlay {
@@ -372,6 +330,9 @@
   .sheet-h2 { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
   .sheet-sub { font-size: 11px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
 
+  /* selected tags — wrapping row for multi-select */
+  .sel-tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+
   /* selected tag */
   .sel-tag {
     display: inline-flex; align-items: center; gap: 6px;
@@ -417,6 +378,7 @@
     display: grid; place-items: center;
     flex-shrink: 0; font-size: 10px; color: var(--green);
     transition: background 0.15s, border-color 0.15s;
+    border-radius: 2px;
   }
 
   .opt-row.selected .opt-indicator { background: var(--cyan); border-color: var(--cyan); color: #020408; font-weight: 700; }
@@ -497,21 +459,75 @@
     .brand-name { font-size: 13px; }
     .chrome-email { display: none; }
     .status-pill { font-size: 8px; padding: 3px 8px; }
-    .page { padding: 20px 14px 72px; }
-    .header { padding: 20px 16px; margin-bottom: 16px; }
-    .header-path { font-size: 9px; word-break: break-all; }
-    .pricing { grid-template-columns: 1fr; }
-    .rate-amount { font-size: 24px; }
-    .remote-note { margin-bottom: 20px; font-size: 12px; }
+
+    /* page */
+    .page { padding: 16px 12px 80px; }
+
+    /* header — bigger readable text */
+    .header { padding: 18px 14px; margin-bottom: 14px; }
+    .header-path { font-size: 10px; word-break: break-all; }
+    .header-desc { font-size: 15px; line-height: 1.75; }
+    .header-contact { font-size: 15px; }
+
+    /* pricing — always side by side, never stacked */
+    .pricing { grid-template-columns: 1fr 1fr; }
+    .rate-index { font-size: 9px; }
+    .rate-amount { font-size: clamp(18px, 5.5vw, 26px); }
+    .rate-label { font-size: 10px; letter-spacing: 0.06em; }
+
+    /* remote note */
+    .remote-note { font-size: 14px; margin-bottom: 18px; }
+
+    /* catalog label */
+    .catalog-label { font-size: 10px; }
+
+    /* service cards — bigger text, taller touch targets */
     .svc-cards { grid-template-columns: 1fr 1fr; gap: 4px; }
-    .svc-card-name { font-size: 10px; }
+    .svc-card { padding: 18px 14px 24px; }
+    .svc-card-index { font-size: 10px; }
+    .svc-card-name { font-size: 12px; letter-spacing: 0.04em; }
+    .svc-card-count { font-size: 11px; }
+
+    /* note */
+    .note { font-size: 14px; }
+
+    /* footer */
     .footer { flex-direction: column; align-items: flex-start; }
     .footer-right { text-align: left; }
-    .float-book { bottom: 16px; right: 16px; padding: 10px 14px; font-size: 9px; }
+    .footer-email { font-size: 14px; }
+
+    /* float btn */
+    .float-book { bottom: 16px; right: 16px; padding: 11px 16px; font-size: 10px; }
+
+    /* sheet */
     .sheet-body { padding: 18px 16px; }
     .sheet-actions { padding: 12px 16px; }
+    .sheet-cmd { font-size: 12px; }
+    .sheet-h2 { font-size: 16px; }
+    .sheet-sub { font-size: 13px; }
+
+    /* option rows — bigger touch targets */
+    .opt-row { padding: 15px 14px; }
+    .opt-name { font-size: 15px; }
+    .opt-desc { font-size: 13px; }
+    .opt-indicator { width: 22px; height: 22px; font-size: 12px; }
+
+    /* form fields */
     .form-row2 { grid-template-columns: 1fr; }
-    .opt-name { font-size: 13px; }
+    .form-label { font-size: 10px; }
+    .form-input, .form-textarea { font-size: 15px; padding: 11px 12px; }
+
+    /* sheet buttons */
+    .sheet-btn-primary { font-size: 11px; padding: 15px; }
+    .sheet-btn-secondary { font-size: 11px; padding: 15px 14px; }
+
+    /* sel tag */
+    .sel-tag { font-size: 11px; }
+
+    /* thank you */
+    .ty-icon { font-size: 22px; }
+    .ty-title { font-size: 13px; }
+    .ty-sub { font-size: 14px; }
   }
 </style>
 </head>
@@ -571,18 +587,18 @@
     <div class="header-path"><span>~/baremetalbit</span>/services/charleston-sc $ cat README.md</div>
     <h1>LOCAL IT SUPPORT.<br><span class="highlight">DONE</span> <span class="magenta">RIGHT.</span></h1>
     <p class="header-desc">Hands-on tech help for home users and small businesses. No call centers, no runaround — just someone who actually knows what they're doing.</p>
-    <p class="header-contact"><span class="label">Contact: </span><a href="mailto:baremetalbit@gmail.com">baremetalbit@gmail.com</a></p>
+    <p class="header-contact"><span class="label">Contact: </span><a href="#" onclick="event.preventDefault();openSheet('onsite')">baremetalbit@gmail.com</a></p>
   </div>
 
   <!-- Pricing -->
   <div class="pricing" id="section-pricing">
-    <div class="rate-card primary" onclick="openModal('onsite')">
+    <div class="rate-card primary" onclick="openSheet('onsite')">
       <div class="rate-index">// RATE_01</div>
       <div class="rate-amount">$75/hr</div>
       <div class="rate-label">On-Site Visit</div>
       <div class="rate-cta"></div>
     </div>
-    <div class="rate-card" onclick="openModal('consult')">
+    <div class="rate-card" onclick="openSheet('consult')">
       <div class="rate-index">// RATE_02</div>
       <div class="rate-amount">FREE</div>
       <div class="rate-label">Initial Consult</div>
@@ -647,39 +663,6 @@
   </div>
 </div>
 
-<!-- ══ RATE MODALS ══ -->
-<div class="modal-overlay" id="modal-onsite" onclick="closeOnOverlay(event,'onsite')">
-  <div class="modal">
-    <div class="modal-titlebar">
-      <span class="modal-titlebar-label">// schedule_session.sh</span>
-      <div class="modal-titlebar-dots"><span></span><span></span><span></span></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-cmd">$ ./schedule <span>--type=onsite --rate=75/hr</span></div>
-      <h2>Schedule a Visit</h2>
-      <p>Send an email to get started. Include a brief description of your issue and your availability and we'll get something on the calendar.</p>
-      <a class="modal-btn" href="mailto:baremetalbit@gmail.com?subject=On-Site Visit Request&body=Hello,%0D%0A%0D%0AI'd like to schedule an on-site visit.%0D%0A%0D%0AIssue description:%0D%0A%0D%0AAvailability:%0D%0A%0D%0APhone Number:%0D%0A%0D%0AThanks">// OPEN EMAIL CLIENT</a>
-      <button class="modal-close" onclick="closeModal('onsite')">[ ESC ] Cancel</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal-consult" onclick="closeOnOverlay(event,'consult')">
-  <div class="modal">
-    <div class="modal-titlebar">
-      <span class="modal-titlebar-label">// book_consult.sh</span>
-      <div class="modal-titlebar-dots"><span></span><span></span><span></span></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-cmd">$ ./schedule <span>--type=consult --rate=free</span></div>
-      <h2>Free Consult</h2>
-      <p>Not sure what you need? No problem. Send an email with a quick description of what's going on and we'll figure it out together — no charge.</p>
-      <a class="modal-btn" href="mailto:baremetalbit@gmail.com?subject=Free Consultation Request&body=Hello,%0D%0A%0D%0AI'd like to schedule a free consultation.%0D%0A%0D%0AWhat's going on:%0D%0A%0D%0AAvailability:%0D%0A%0D%0APhone Number:%0D%0A%0D%0AThanks">// OPEN EMAIL CLIENT</a>
-      <button class="modal-close" onclick="closeModal('consult')">[ ESC ] Cancel</button>
-    </div>
-  </div>
-</div>
-
 <!-- ══ 3-STEP SERVICE SHEET ══ -->
 <div class="sheet-overlay" id="sheet-overlay" onclick="closeSheetOnOverlay(event)">
   <div class="sheet" id="sheet">
@@ -709,6 +692,24 @@
 <script>
 /* ── DATA ── */
 var SVCS = {
+  onsite: {
+    label: 'ON-SITE VISIT — $75/HR', cmd: 'onsite',
+    items: [
+      { name: 'Windows Support',        desc: 'Virus removal, OS reinstall, performance tuning, driver issues.' },
+      { name: 'Networking',             desc: 'Wi-Fi troubleshooting, router setup, home network organization.' },
+      { name: 'Hardware',               desc: 'RAM/SSD upgrades, peripheral setup, data backup and transfer.' },
+      { name: 'Education & Guidance',   desc: 'Device walkthroughs, security awareness, email and cloud setup.' },
+      { name: 'Something else',         desc: "Describe your issue in the next step — I'll let you know if I can help." }
+    ]
+  },
+  consult: {
+    label: 'FREE INITIAL CONSULT', cmd: 'consult',
+    items: [
+      { name: 'Not sure what I need',   desc: "Describe what's going on and we'll figure out the right path together." },
+      { name: 'Get a price estimate',   desc: 'Tell me about your issue and I\'ll give you a rough idea of time and cost.' },
+      { name: 'Ask a quick question',   desc: 'Something simple you just need a straight answer on.' }
+    ]
+  },
   windows: {
     label: 'WINDOWS SUPPORT', cmd: 'windows',
     items: [
@@ -754,13 +755,13 @@ var FORMSPREE_ID = 'mykvplrn';
 
 /* ── STATE ── */
 var activeCat = null;
-var selIdx    = null;
+var selIdxs   = [];   /* array — multi-select */
 var step      = 1;
 
 /* ── SHEET OPEN / CLOSE ── */
 function openSheet(cat) {
   activeCat = cat;
-  selIdx    = null;
+  selIdxs   = [];
   step      = 1;
   renderSheet();
   document.getElementById('sheet-overlay').classList.add('open');
@@ -800,7 +801,7 @@ function renderStep1() {
 
   var opts = '';
   svc.items.forEach(function(item, i) {
-    opts += '<div class="opt-row" id="opt-' + i + '" onclick="pickOpt(' + i + ')">' +
+    opts += '<div class="opt-row" id="opt-' + i + '" onclick="toggleOpt(' + i + ')">' +
       '<div class="opt-indicator" id="ind-' + i + '"></div>' +
       '<div class="opt-text">' +
         '<div class="opt-name">' + item.name + '</div>' +
@@ -811,42 +812,59 @@ function renderStep1() {
   document.getElementById('sheet-body').innerHTML =
     '<div class="sheet-cmd">$ ./request <span>--cat=' + svc.cmd + '</span></div>' +
     '<div class="sheet-h2">What do you need help with?</div>' +
-    '<div class="sheet-sub">Select the service that best matches your issue.</div>' +
+    '<div class="sheet-sub">Select all that apply — you can pick more than one.</div>' +
     '<div class="options-list">' + opts + '</div>';
 
   document.getElementById('sheet-actions').innerHTML =
     '<button class="sheet-btn-secondary" onclick="closeSheet()">[ ESC ] Cancel</button>' +
     '<button class="sheet-btn-primary" id="btn-cont" onclick="goStep2()" disabled>CONTINUE →</button>';
+
+  /* restore selections if going back */
+  selIdxs.forEach(function(i) { markOpt(i, true); });
 }
 
-function pickOpt(i) {
-  selIdx = i;
-  var rows = document.querySelectorAll('.opt-row');
-  rows.forEach(function(r, idx) {
-    r.classList.toggle('selected', idx === i);
-    var ind = document.getElementById('ind-' + idx);
-    if (ind) ind.textContent = idx === i ? '✓' : '';
-  });
+function toggleOpt(i) {
+  var idx = selIdxs.indexOf(i);
+  if (idx === -1) {
+    selIdxs.push(i);
+    markOpt(i, true);
+  } else {
+    selIdxs.splice(idx, 1);
+    markOpt(i, false);
+  }
   var btn = document.getElementById('btn-cont');
-  if (btn) btn.disabled = false;
+  if (btn) btn.disabled = selIdxs.length === 0;
+}
+
+function markOpt(i, on) {
+  var row = document.getElementById('opt-' + i);
+  var ind = document.getElementById('ind-' + i);
+  if (row) row.classList.toggle('selected', on);
+  if (ind) ind.textContent = on ? '✓' : '';
 }
 
 /* STEP 2 */
 function goStep2() {
-  if (selIdx === null) return;
+  if (selIdxs.length === 0) return;
   step = 2;
   renderSheet();
 }
 
 function renderStep2() {
-  var svc    = SVCS[activeCat];
-  var chosen = svc.items[selIdx].name;
+  var svc = SVCS[activeCat];
+  /* build tags for every selected service */
+  var tags = selIdxs.map(function(i) {
+    return '<span class="sel-tag"><span class="sel-tag-check">✓</span>' + svc.items[i].name + '</span>';
+  }).join(' ');
+
+  var chosenList = selIdxs.map(function(i) { return svc.items[i].name; }).join(', ');
+
   document.getElementById('sheet-label').textContent = '// contact_info.sh';
 
   document.getElementById('sheet-body').innerHTML =
-    '<div class="sheet-cmd">$ ./submit <span>--service="' + chosen + '"</span></div>' +
+    '<div class="sheet-cmd">$ ./submit <span>--services="' + chosenList + '"</span></div>' +
     '<div class="sheet-h2">Your Contact Info</div>' +
-    '<div class="sel-tag"><span class="sel-tag-check">✓</span>' + chosen + '</div>' +
+    '<div class="sel-tags-wrap">' + tags + '</div>' +
     '<div class="form-row2">' +
       '<div class="form-group"><label class="form-label">// First Name *</label><input class="form-input" id="f-first" type="text" placeholder="Jane" /></div>' +
       '<div class="form-group"><label class="form-label">// Last Name *</label><input class="form-input" id="f-last" type="text" placeholder="Smith" /></div>' +
@@ -864,7 +882,6 @@ function renderStep2() {
 function goBack() {
   step = 1;
   renderSheet();
-  setTimeout(function() { if (selIdx !== null) pickOpt(selIdx); }, 10);
 }
 
 /* STEP 3 */
@@ -877,13 +894,13 @@ function submitRequest() {
   if (!phone.value.trim()) { phone.focus(); return; }
   if (!email.value.trim()) { email.focus(); return; }
 
-  var svc    = SVCS[activeCat];
-  var chosen = svc.items[selIdx].name;
+  var svc       = SVCS[activeCat];
+  var chosenList = selIdxs.map(function(i) { return svc.items[i].name; }).join(', ');
 
   var payload = {
     _subject:          'New Service Request — BareMetalBit',
     service_category:  svc.label,
-    service_selected:  chosen,
+    services_selected: chosenList,
     first_name:        first.value.trim(),
     last_name:         document.getElementById('f-last').value.trim(),
     phone:             phone.value.trim(),
@@ -897,12 +914,8 @@ function submitRequest() {
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(payload)
   })
-  .then(function(res) {
-    step = 3; renderSheet();
-  })
-  .catch(function() {
-    step = 3; renderSheet();
-  });
+  .then(function() { step = 3; renderSheet(); })
+  .catch(function() { step = 3; renderSheet(); });
 }
 
 function renderStep3() {
@@ -916,19 +929,6 @@ function renderStep3() {
 
   document.getElementById('sheet-actions').innerHTML =
     '<button class="sheet-btn-primary" onclick="closeSheet()">[ ESC ] Close</button>';
-}
-
-/* ── RATE CARD MODALS ── */
-function openModal(type) {
-  document.getElementById('modal-' + type).classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(type) {
-  document.getElementById('modal-' + type).classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeOnOverlay(e, type) {
-  if (e.target === document.getElementById('modal-' + type)) closeModal(type);
 }
 
 /* ── NAV ── */
@@ -958,11 +958,7 @@ window.addEventListener('scroll', function() {
 
 /* ── ESC KEY ── */
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeModal('onsite');
-    closeModal('consult');
-    closeSheet();
-  }
+  if (e.key === 'Escape') closeSheet();
 });
 </script>
 </body>
