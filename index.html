@@ -240,7 +240,7 @@
   @keyframes bootFade  { to { opacity: 0; pointer-events: none; } }
   @keyframes statusPulse { 0%,100% { opacity:1; box-shadow:0 0 6px var(--green); } 50% { opacity:0.5; box-shadow:none; } }
   @keyframes popIn { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  @keyframes cyanPulse { 0%,100% { text-shadow:0 0 8px var(--magenta), 0 0 16px var(--magenta); opacity:1; } 50% { text-shadow:0 0 4px var(--magenta); opacity:0.7; } }
+  @keyframes cyanPulse { 0%,100% { color:#ff4da6; text-shadow:0 0 8px #ff4da6, 0 0 16px #ff4da6; opacity:1; } 50% { color:#ff4da6; text-shadow:0 0 4px #ff4da6; opacity:0.6; } }
 
   /* hide mobile pricing on desktop — must come BEFORE the media query */
   .m-pricing { display: none; }
@@ -264,27 +264,24 @@
     .brand-name { font-size: 18px; letter-spacing: 0.1em; }
     .brand-ver  { font-size: 9px; }
 
-    /* > icon — glow + pulse red */
+    /* > icon — box stays cyan, only the arrow character pulses red */
     .brand-icon {
       width: 32px; height: 32px;
-      border-color: var(--magenta);
-      box-shadow: 0 0 8px rgba(255,77,166,0.5);
-      animation: cyanPulse 2s infinite;
+      border-color: var(--cyan);
+      box-shadow: 0 0 8px rgba(0,229,255,0.4);
     }
     .brand-icon span {
       font-size: 17px;
-      color: var(--magenta);
-      text-shadow: 0 0 8px var(--magenta);
+      color: #ff4da6 !important;
+      text-shadow: 0 0 8px #ff4da6 !important;
       animation: cyanPulse 2s infinite;
     }
     /* when open: rotate to point down */
     .brand-icon.open {
-      animation: none;
-      box-shadow: 0 0 12px rgba(255,77,166,0.7);
-      background: rgba(255,77,166,0.1);
-      border-color: var(--magenta);
+      box-shadow: 0 0 12px rgba(0,229,255,0.6);
+      background: rgba(0,229,255,0.12);
     }
-    .brand-icon.open span { transform: rotate(90deg); display: inline-block; }
+    .brand-icon.open span { transform: rotate(90deg); display: inline-block; animation: none; }
 
     /* nav menu items: Services / Consultation rows */
     .nav-menu { min-width: 200px; }
@@ -307,40 +304,30 @@
     .remote-note { font-size: 14px; margin-bottom: 14px; }
     .m-col { display: flex; flex-direction: column; gap: 4px; }
 
-    /* Services column card */
-    .m-svc-card {
-      background: var(--surface2);
-      border: 1px solid var(--border-bright);
-      padding: 18px 14px;
+    /* Services + Consult mobile cards — match cat-row style */
+    .m-svc-card, .m-consult-card {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 16px;
+      border: 1px solid var(--border);
+      background: #1e3a52;
       cursor: pointer;
-      position: relative; overflow: hidden;
-      transition: border-color 0.2s;
+      transition: background 0.15s, border-color 0.15s;
       -webkit-tap-highlight-color: transparent;
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .m-svc-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-    .m-svc-card:active::before { transform: scaleX(1); }
-    .m-svc-card:active { border-color: var(--cyan); }
-
-    .m-card-index  { font-size: 9px; color: var(--dim); letter-spacing: 0.12em; margin-bottom: 4px; }
-    .m-card-amount { font-family: var(--display); font-size: clamp(16px, 5vw, 22px); font-weight: 700; color: var(--cyan); text-shadow: 0 0 12px rgba(0,245,255,0.4); line-height: 1; margin-bottom: 4px; }
-    .m-card-label  { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-    .m-card-cta    { font-size: 9px; color: var(--green); opacity: 0.7; margin-top: 8px; }
-
-    /* Consult column card */
-    .m-consult-card {
-      background: var(--surface);
-      border: 1px solid var(--border-bright);
-      padding: 18px 14px;
-      cursor: pointer;
+      user-select: none;
       position: relative; overflow: hidden;
-      transition: border-color 0.2s;
-      -webkit-tap-highlight-color: transparent;
-      display: flex; flex-direction: column; gap: 4px;
     }
-    .m-consult-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green), var(--cyan)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-    .m-consult-card:active::before { transform: scaleX(1); }
-    .m-consult-card:active { border-color: var(--green); }
+    .m-svc-card::before, .m-consult-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--cyan);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.2s;
+    }
+    .m-svc-card:active, .m-consult-card:active {
+      background: var(--cyan-dim);
+      border-color: rgba(0,229,255,0.3);
+    }
+    .m-svc-card:active::before, .m-consult-card:active::before { transform: scaleY(1); }
 
     /* hide desktop svc-cards grid */
     .svc-cards { display: none; }
@@ -421,7 +408,7 @@
     <div class="chrome-brand">
       <div class="nav-dropdown">
         <div class="brand-icon" id="nav-toggle" onclick="toggleNav()">
-          <span style="font-size:14px;color:var(--cyan);text-shadow:0 0 8px var(--cyan);" id="nav-arrow">&#62;</span>
+          <span style="font-size:14px;color:#ff4da6;text-shadow:0 0 8px #ff4da6;" id="nav-arrow">&#62;</span>
         </div>
         <!-- DESKTOP nav -->
         <div class="nav-menu" id="nav-menu">
@@ -483,16 +470,20 @@
   <!-- MOBILE pricing: stacked vertically -->
   <div class="m-pricing" id="m-section-pricing">
     <div class="m-svc-card" onclick="openServicesSheet()">
-      <div class="m-card-index">// RATE_01</div>
-      <div class="m-card-amount">$75/hr</div>
-      <div class="m-card-label">On-Site Tech Support</div>
-      <div class="m-card-cta">$ ./schedule →</div>
+      <div class="cat-icon">⚙</div>
+      <div class="cat-text">
+        <div class="cat-name">On-Site Tech Support</div>
+        <div class="cat-desc">On-site tech support — $75/hr</div>
+      </div>
+      <div class="cat-arrow">›</div>
     </div>
     <div class="m-consult-card" onclick="openSheet('consult')">
-      <div class="m-card-index">// RATE_02</div>
-      <div class="m-card-amount" style="color:var(--green);text-shadow:0 0 12px rgba(57,255,133,0.4);">FREE</div>
-      <div class="m-card-label">Free Initial Consultation</div>
-      <div class="m-card-cta" style="color:var(--green);">$ ./consult →</div>
+      <div class="cat-icon">💬</div>
+      <div class="cat-text">
+        <div class="cat-name">Free Consultation</div>
+        <div class="cat-desc">Not sure what you need? Let's talk.</div>
+      </div>
+      <div class="cat-arrow">›</div>
     </div>
   </div>
 
