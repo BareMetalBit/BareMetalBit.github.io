@@ -616,21 +616,14 @@ var FORMSPREE_ID = 'mykvplrn';
 /* ══════════════════════════════════
    STATE
 ══════════════════════════════════ */
-var flowType     = null;  // 'services' | 'consult' | 'direct' | 'other'
-var selCats      = {};    // { windows:[0,2], networking:[1] }
-var activeCat    = null;  // current category being drilled into
-var catQueue     = [];    // categories left to drill
+var flowType     = null;
+var selCats      = {};
+var activeCat    = null;
+var catQueue     = [];
 var contactData  = null;
 var sheetStep    = 0;
-/* steps:
-   0 = email choice (services vs consult)  [email entry point only]
-   1 = category picker (which services)    [services flow]
-   1c = consult options                    [consult flow]
-   2 = sub-options for current category
-   3 = contact form
-   4 = thank you
-*/
-var sheetStepId  = 'choice'; // 'choice' | 'cats' | 'subopts' | 'contact' | 'done'
+var cameFromChoice = false;
+var sheetStepId  = 'choice';
 
 /* ══════════════════════════════════
    ENTRY POINTS
@@ -639,18 +632,19 @@ var sheetStepId  = 'choice'; // 'choice' | 'cats' | 'subopts' | 'contact' | 'don
 /* email link / float btn: ask services or consult */
 function openEmailSheet() {
   resetState();
-  flowType   = null;
-  sheetStepId = 'choice';
+  flowType       = null;
+  cameFromChoice = true;
+  sheetStepId    = 'choice';
   renderSheet();
   document.getElementById('sheet-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-/* Services card ($75/hr) */
 function openServicesSheet() {
   resetState();
-  flowType    = 'services';
-  sheetStepId = 'cats';
+  flowType       = 'services';
+  cameFromChoice = false;
+  sheetStepId    = 'cats';
   renderSheet();
   document.getElementById('sheet-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -679,12 +673,13 @@ function openSheet(cat) {
 }
 
 function resetState() {
-  selCats     = {};
-  activeCat   = null;
-  catQueue    = [];
-  contactData = null;
-  flowType    = null;
-  sheetStepId = 'choice';
+  selCats        = {};
+  activeCat      = null;
+  catQueue       = [];
+  contactData    = null;
+  flowType       = null;
+  cameFromChoice = false;
+  sheetStepId    = 'choice';
 }
 
 /* ══════════════════════════════════
@@ -755,7 +750,8 @@ function renderChoice() {
 }
 
 function pickFlow(type) {
-  flowType = type;
+  flowType       = type;
+  cameFromChoice = true;
   if (type === 'services') {
     sheetStepId = 'cats';
   } else {
@@ -807,8 +803,9 @@ function toggleCat(cat) {
 }
 
 function goBackFromCats() {
-  if (flowType === 'services' && sheetStepId === 'cats') {
-    /* came from email choice */
+  /* if we got here from the email choice screen, go back to it */
+  /* if we got here directly from a card tap, just close */
+  if (flowType === 'services' && cameFromChoice) {
     sheetStepId = 'choice';
     renderSheet();
   } else {
