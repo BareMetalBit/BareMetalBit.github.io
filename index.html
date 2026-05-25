@@ -58,6 +58,7 @@
 
   .nav-dropdown { position: relative; }
   .brand-icon { width: 28px; height: 28px; border: 1px solid var(--cyan); display: grid; place-items: center; cursor: pointer; background: transparent; transition: background 0.2s, box-shadow 0.2s; }
+  .brand-icon span { animation: cyanPulse 2s infinite; }
   .brand-icon:hover, .brand-icon.open { background: rgba(0,229,255,0.12); box-shadow: 0 0 10px rgba(0,229,255,0.3); }
 
   .nav-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: #0d1f2d; border: 1px solid var(--border-bright); min-width: 220px; z-index: 2000; }
@@ -94,8 +95,8 @@
   .header-contact a { color: var(--cyan); text-decoration: none; font-weight: 700; transition: text-shadow 0.2s; }
   .header-contact a:hover { text-shadow: 0 0 10px var(--cyan); }
 
-  /* ── PRICING desktop ── */
-  .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+  /* ── PRICING desktop — stacked vertically, matches mobile ── */
+  .pricing { display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px; }
   .rate-card { background: var(--surface); border: 1px solid var(--border-bright); padding: 20px 22px; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.2s; }
   .rate-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
   .rate-card:hover { border-color: var(--cyan); }
@@ -417,13 +418,15 @@
         <div class="brand-icon" id="nav-toggle" onclick="toggleNav()">
           <span style="font-size:14px;color:#39ff85;text-shadow:0 0 8px #39ff85;" id="nav-arrow">&#62;</span>
         </div>
-        <!-- DESKTOP nav -->
+        <!-- DESKTOP nav — matches mobile: Services + Consultation -->
         <div class="nav-menu" id="nav-menu">
-          <div class="nav-menu-label">// jump_to_section</div>
-          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">01</span> Windows Support</a>
-          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">02</span> Networking</a>
-          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">03</span> Hardware</a>
-          <a class="nav-item" onclick="jumpTo('section-services')"><span class="nav-item-index">04</span> Education &amp; Guidance</a>
+          <div class="nav-menu-label">// select_category</div>
+          <a class="nav-item" onclick="toggleNav();openServicesSheet()">
+            <span class="nav-item-index">01</span> Services
+          </a>
+          <a class="nav-item" onclick="toggleNav();openSheet('consult')">
+            <span class="nav-item-index">02</span> Consultation
+          </a>
         </div>
         <!-- MOBILE nav -->
         <div class="nav-menu" id="nav-menu-mobile" style="display:none;">
@@ -443,7 +446,7 @@
     </div>
     <div class="chrome-status">
       <div class="status-pill">● SERVICES ONLINE</div>
-      <div class="chrome-email"><a href="mailto:baremetalbit@gmail.com">baremetalbit@gmail.com</a></div>
+      <div class="chrome-email"><a href="#" onclick="event.preventDefault();openEmailSheet()">baremetalbit@gmail.com</a></div>
     </div>
   </div>
 </div>
@@ -458,19 +461,23 @@
     <p class="header-contact"><span class="label">Contact: </span><a href="#" onclick="event.preventDefault();openEmailSheet()">baremetalbit@gmail.com</a></p>
   </div>
 
-  <!-- DESKTOP pricing -->
+  <!-- DESKTOP pricing — matches mobile style -->
   <div class="pricing" id="section-pricing">
-    <div class="rate-card primary" onclick="openServicesSheet()">
-      <div class="rate-index">// RATE_01</div>
-      <div class="rate-amount">$75/hr</div>
-      <div class="rate-label">On-Site Visit</div>
-      <div class="rate-cta"></div>
+    <div class="cat-row" onclick="openServicesSheet()">
+      <div class="cat-icon">⚙</div>
+      <div class="cat-text">
+        <div class="cat-name">On-Site Tech Support</div>
+        <div class="cat-desc">On-site tech support — $75/hr</div>
+      </div>
+      <div class="cat-arrow">›</div>
     </div>
-    <div class="rate-card" onclick="openSheet('consult')">
-      <div class="rate-index">// RATE_02</div>
-      <div class="rate-amount">FREE</div>
-      <div class="rate-label">Initial Consult</div>
-      <div class="rate-cta"></div>
+    <div class="cat-row" onclick="openSheet('consult')">
+      <div class="cat-icon">💬</div>
+      <div class="cat-text">
+        <div class="cat-name">Free Consultation</div>
+        <div class="cat-desc">Not sure what you need? Let's talk.</div>
+      </div>
+      <div class="cat-arrow">›</div>
     </div>
   </div>
 
