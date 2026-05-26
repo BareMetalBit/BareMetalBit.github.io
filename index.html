@@ -212,15 +212,16 @@
   .opt-desc { font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.5; }
 
   /* category picker rows (bigger, for service/consult choice) */
-  .cat-row { display: flex; align-items: center; gap: 16px; padding: 18px 16px; border: 1px solid var(--border); background: #1e3a52; cursor: pointer; transition: background 0.15s, border-color 0.15s; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; overflow: hidden; margin-bottom: 2px; }
+  .cat-row { display: flex; align-items: center; gap: 16px; padding: 18px 16px; border: 1px solid var(--border); background: #1e3a52; cursor: pointer; transition: background 0.15s, border-color 0.15s; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; overflow: hidden; }
+  .cat-row + .cat-row { margin-top: 2px; }
   .cat-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--cyan); transform: scaleY(0); transform-origin: top; transition: transform 0.2s; }
   .cat-row:hover, .cat-row:active { background: var(--cyan-dim); border-color: rgba(0,229,255,0.3); }
   .cat-row:hover::before { transform: scaleY(1); }
-  .cat-icon { font-size: 20px; flex-shrink: 0; }
-  .cat-text { flex: 1; }
-  .cat-name { font-family: var(--display); font-size: 13px; font-weight: 700; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
-  .cat-desc { font-family: var(--sans); font-size: 12px; color: var(--muted); }
-  .cat-arrow { color: var(--cyan); opacity: 0.5; font-size: 18px; flex-shrink: 0; }
+  .cat-icon { font-size: 18px; flex-shrink: 0; width: 28px; text-align: center; line-height: 1; display: flex; align-items: center; justify-content: center; }
+  .cat-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .cat-name { font-family: var(--display); font-size: 13px; font-weight: 700; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+  .cat-desc { font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.3; }
+  .cat-arrow { color: var(--cyan); opacity: 0.5; font-size: 18px; flex-shrink: 0; line-height: 1; }
 
   .form-group { margin-bottom: 14px; }
   .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -306,36 +307,10 @@
     .header-desc { font-size: 15px; line-height: 1.75; }
     .header-contact { font-size: 15px; }
 
-    /* Mobile pricing: stacked vertically */
+    /* Mobile pricing: stacked vertically using same cat-row style */
     .m-pricing { display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px; }
     .pricing { display: none; }
     .remote-note { font-size: 14px; margin-bottom: 14px; }
-    .m-col { display: flex; flex-direction: column; gap: 4px; }
-
-    /* Services + Consult mobile cards — match cat-row style */
-    .m-svc-card, .m-consult-card {
-      display: flex; align-items: center; gap: 16px;
-      padding: 20px 16px;
-      border: 1px solid var(--border);
-      background: #1e3a52;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      position: relative; overflow: hidden;
-    }
-    .m-svc-card::before, .m-consult-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 3px; background: var(--cyan);
-      transform: scaleY(0); transform-origin: top;
-      transition: transform 0.2s;
-    }
-    .m-svc-card:active, .m-consult-card:active {
-      background: var(--cyan-dim);
-      border-color: rgba(0,229,255,0.3);
-    }
-    .m-svc-card:active::before, .m-consult-card:active::before { transform: scaleY(1); }
 
     /* hide desktop svc-cards grid */
     .svc-cards { display: none; }
@@ -366,10 +341,11 @@
     .opt-desc { font-size: 13px; }
     .opt-indicator { width: 22px; height: 22px; font-size: 12px; }
 
-    /* category rows larger */
+    /* category rows larger on mobile */
     .cat-row { padding: 20px 16px; }
     .cat-name { font-size: 15px; }
     .cat-desc { font-size: 13px; }
+    .cat-icon { font-size: 20px; width: 32px; }
 
     /* form */
     .form-row2 { grid-template-columns: 1fr; }
@@ -483,7 +459,7 @@
 
   <!-- MOBILE pricing: stacked vertically -->
   <div class="m-pricing" id="m-section-pricing">
-    <div class="m-svc-card" onclick="openServicesSheet()">
+    <div class="cat-row" onclick="openServicesSheet()">
       <div class="cat-icon">⚙</div>
       <div class="cat-text">
         <div class="cat-name">Services</div>
@@ -491,7 +467,7 @@
       </div>
       <div class="cat-arrow">›</div>
     </div>
-    <div class="m-consult-card" onclick="openSheet('consult')">
+    <div class="cat-row" onclick="openSheet('consult')">
       <div class="cat-icon">💬</div>
       <div class="cat-text">
         <div class="cat-name">Free Consultation</div>
