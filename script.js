@@ -205,7 +205,7 @@ function renderCatPicker() {
     return '<div class="opt-row' + (checked?' selected':'') + '" id="cat-'+cat+'" onclick="toggleCat(\''+cat+'\')">' +
       '<div class="opt-indicator" id="catind-'+cat+'">' + (checked?'✓':'') + '</div>' +
       '<div class="opt-text">' +
-        '<div class="opt-name">'+SVC_LABELS[cat]+'</div>' +
+        '<div class="opt-name">'+SVC_LABELGet EstimateS[cat]+'</div>' +
         '<div class="opt-desc">'+SVC_COUNTS[cat]+' services available</div>' +
       '</div></div>';
   }).join('');
@@ -214,7 +214,7 @@ function renderCatPicker() {
     '<div class="sheet-cmd">$ ./services <span>--select-categories</span></div>' +
     '<div class="sheet-h2">Which services do you need?</div>' +
     '<div class="sheet-sub">Select all that apply — we\'ll go through each one.</div>' +
-    '<div class="sheet-rate-badge">// $75 / hr &nbsp;·&nbsp; On-Site Visit</div>' +
+    '<div class="sheet-rate-badge">//  &nbsp;·&nbsp; On-Site Visit</div>' +
     '<div class="options-list">' + rows + '</div>';
 
   document.getElementById('sheet-actions').innerHTML =
@@ -287,7 +287,7 @@ function renderSubOpts() {
   }).join('');
 
   var badge = isServices
-    ? '<div class="sheet-rate-badge">// $75 / hr &nbsp;·&nbsp; On-Site Visit</div>'
+    ? '<div class="sheet-rate-badge">// Get Estimate &nbsp;·&nbsp; On-Site Visit</div>'
     : '<div class="sheet-rate-badge"><span class="free">// FREE</span> &nbsp;·&nbsp; Initial Consultation</div>';
 
   var remainStr = catQueue.length > 0 ? ' (' + catQueue.length + ' more after this)' : '';
@@ -375,7 +375,7 @@ function renderContact() {
   var isConsult = (flowType === 'consult' || activeCat === 'consult');
   var badge = isConsult
     ? '<div class="sheet-rate-badge"><span class="free">// FREE</span> &nbsp;·&nbsp; Initial Consultation</div>'
-    : '<div class="sheet-rate-badge">// $75 / hr &nbsp;·&nbsp; On-Site Visit</div>';
+    : '<div class="sheet-rate-badge">// Get Estimate &nbsp;·&nbsp; On-Site Visit</div>';
 
   document.getElementById('sheet-body').innerHTML =
     '<div class="sheet-cmd">$ ./submit <span>--contact-info</span></div>' +
