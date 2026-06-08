@@ -270,7 +270,7 @@ function nextCatDrill() {
 function renderSubOpts() {
   var items = SVC_ITEMS[activeCat];
   var isServices = (flowType === 'services');
-  var label = (activeCat === 'consult') ? 'FREE CONSULT' :
+  var label = (activeCat === 'consult') ? 'FREE CONSULTATION' :
               (activeCat === 'other')   ? 'OTHER / NOT LISTED' :
               SVC_LABELS[activeCat].toUpperCase();
   var cmdStr = activeCat;
