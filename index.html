@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAREMETALBIT // IT SUPPORT SERVICES</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="bingbot" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- Boot Screen -->
+<div class="boot-screen">
+  <div class="boot-line">BAREMETALBIT OS v2.5.1 — INITIALIZING...</div>
+  <div class="boot-line">[ OK ] Loading kernel modules...</div>
+  <div class="boot-line">[ OK ] Mounting filesystems...</div>
+  <div class="boot-line">[ OK ] Starting network services...</div>
+  <div class="boot-line">[ OK ] Security protocols active...</div>
+  <div class="boot-line">» Loading service catalog...</div>
+  <div class="boot-line">» Establishing connection: Charleston, SC...</div>
+  <div class="boot-line">[ READY ] All systems operational. Welcome.</div>
+</div>
+
+<!-- Chrome -->
+<div class="chrome-top">
+  <div class="chrome-row1">
+    <span class="cmd-left cmd-desktop">root@baremetalbit:~$ ./services --list</span>
+    <span class="cmd-left cmd-mobile">root@bmb:~$ ./services --list</span>
+    <span>SYS:<span style="color:var(--green)">ONLINE</span> &nbsp;|&nbsp; LOC:CHS-SC &nbsp;|&nbsp; EST.2026</span>
+  </div>
+  <div class="chrome-row2">
+    <div class="chrome-brand">
+      <div class="nav-dropdown">
+        <div class="brand-icon" id="nav-toggle" onclick="toggleNav()">
+          <span style="font-size:14px;color:#39ff85;text-shadow:0 0 8px #39ff85;" id="nav-arrow">&#62;</span>
+        </div>
+        <!-- DESKTOP nav — matches mobile: Services + Consultation -->
+        <div class="nav-menu" id="nav-menu">
+          <div class="nav-menu-label">// select_category</div>
+          <a class="nav-item" onclick="toggleNav();openServicesSheet()">
+            <span class="nav-item-index">01</span> Services
+          </a>
+          <a class="nav-item" onclick="toggleNav();openSheet('consult')">
+            <span class="nav-item-index">02</span> Consultation
+          </a>
+        </div>
+        <!-- MOBILE nav -->
+        <div class="nav-menu" id="nav-menu-mobile" style="display:none;">
+          <div class="nav-menu-label">// select_category</div>
+          <a class="nav-item" onclick="mobileNavPick('services')">
+            <span class="nav-item-index">01</span> Services
+          </a>
+          <a class="nav-item" onclick="mobileNavPick('consult')">
+            <span class="nav-item-index">02</span> Consultation
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="brand-name">BAREMETALBIT</div>
+        <div class="brand-ver">// IT SUPPORT SERVICES v1.0</div>
+      </div>
+    </div>
+    <div class="chrome-status">
+      <div class="status-pill" id="status-pill">● SERVICES ONLINE</div>
+      <div class="chrome-email"><a href="#" onclick="event.preventDefault();openEmailSheet()">baremetalbit@gmail.com</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-path"><span>~/baremetalbit</span>/services/charleston-sc $ cat README.md</div>
+    <h1>LOCAL IT SUPPORT.<br><span class="highlight">DONE</span> <span class="magenta">RIGHT.</span></h1>
+    <p class="header-desc">Hands-on tech help for home users and small businesses. No call centers, no runaround — just someone who actually knows what they're doing.</p>
+    <p class="header-contact"><span class="label">Contact: </span><a href="#" onclick="event.preventDefault();openEmailSheet()">baremetalbit@gmail.com</a></p>
+  </div>
+
+  <!-- DESKTOP pricing — matches mobile style -->
+  <div class="pricing" id="section-pricing">
+    <div class="cat-row" onclick="openServicesSheet()">
+      <div class="cat-icon">⚙</div>
+      <div class="cat-text">
+        <div class="cat-name">Services</div>
+        <div class="cat-desc">On-site tech support</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+    <div class="cat-row" onclick="openSheet('consult')">
+      <div class="cat-icon">💬</div>
+      <div class="cat-text">
+        <div class="cat-name">Free Consultation</div>
+        <div class="cat-desc">Not sure what you need? Let's talk.</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+  </div>
+
+  <!-- MOBILE pricing: stacked vertically -->
+  <div class="m-pricing" id="m-section-pricing">
+    <div class="cat-row" onclick="openServicesSheet()">
+      <div class="cat-icon">⚙</div>
+      <div class="cat-text">
+        <div class="cat-name">Services</div>
+        <div class="cat-desc">On-site tech support</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+    <div class="cat-row" onclick="openSheet('consult')">
+      <div class="cat-icon">💬</div>
+      <div class="cat-text">
+        <div class="cat-name">Free Consultation</div>
+        <div class="cat-desc">Not sure what you need? Let's talk.</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="remote-note">
+    <span class="hl">REMOTE_SUPPORT</span> — available to existing clients upon request. Contact to enable access.
+  </div>
+
+  <!-- DESKTOP service cards -->
+  <div id="section-services">
+    <div class="catalog-label">// SELECT A SERVICE TO GET STARTED</div>
+    <div class="svc-cards">
+      <div class="svc-card" onclick="openSheet('windows')">
+        <div class="svc-card-index">// 01</div>
+        <div class="svc-card-name">Windows Support</div>
+        <div class="svc-card-count">4 services</div>
+        <span class="svc-card-arrow">›</span>
+      </div>
+      <div class="svc-card" onclick="openSheet('networking')">
+        <div class="svc-card-index">// 02</div>
+        <div class="svc-card-name">Networking</div>
+        <div class="svc-card-count">3 services</div>
+        <span class="svc-card-arrow">›</span>
+      </div>
+      <div class="svc-card" onclick="openSheet('hardware')">
+        <div class="svc-card-index">// 03</div>
+        <div class="svc-card-name">Hardware</div>
+        <div class="svc-card-count">3 services</div>
+        <span class="svc-card-arrow">›</span>
+      </div>
+      <div class="svc-card" onclick="openSheet('education')">
+        <div class="svc-card-index">// 04</div>
+        <div class="svc-card-name">Education &amp; Guidance</div>
+        <div class="svc-card-count">3 services</div>
+        <span class="svc-card-arrow">›</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="note" onclick="openSheet('other')">
+    <strong>Not sure if your issue is on the list?</strong> Reach out anyway. If it's something I can't handle, I'll tell you straight and point you in the right direction — no charge for that conversation.
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-label">// get_in_touch</div>
+      <div class="footer-email"><span class="label">Contact: </span><a href="#" onclick="event.preventDefault();openEmailSheet()">baremetalbit@gmail.com</a></div>
+    </div>
+    <div class="footer-right">
+      <span class="footer-brand">BAREMETALBIT</span>
+      <span class="footer-region">// Serving the Charleston, SC Area</span>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM SHEET -->
+<div class="sheet-overlay" id="sheet-overlay" onclick="closeSheetOnOverlay(event)">
+  <div class="sheet" id="sheet">
+    <div class="sheet-titlebar">
+      <div class="sheet-titlebar-left">
+        <span class="sheet-titlebar-label" id="sheet-label">// service_request.sh</span>
+        <div class="step-pips">
+          <div class="pip active" id="pip1"></div>
+          <div class="pip" id="pip2"></div>
+          <div class="pip" id="pip3"></div>
+          <div class="pip" id="pip4"></div>
+        </div>
+      </div>
+      <div class="sheet-titlebar-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+    <div class="sheet-actions" id="sheet-actions"></div>
+  </div>
+</div>
+
+<!-- Float button -->
+<button class="float-book" id="float-book" onclick="openEmailSheet()">
+  ↑ Book a Visit
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
